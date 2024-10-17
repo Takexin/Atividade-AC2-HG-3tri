@@ -1,11 +1,10 @@
 extends KinematicBody2D
 
+var health = 3
 const SPEED = 15000
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-func _ready():
-	pass # Replace with function body.
+onready var timer = get_node("Timer")
+onready var sprite = get_node("Sprite")
+
 
 func _physics_process(delta):
 	var velocity = Vector2()
@@ -18,6 +17,21 @@ func _physics_process(delta):
 	if(Input.is_action_pressed("keyRight")):
 		velocity.x = SPEED
 	move_and_slide(velocity * delta)
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+	if(Input.is_action_pressed("restart")):
+		get_tree().reload_current_scene()
+
+func _on_Enemy_damage():
+	
+	health -= 1
+	print("damage taken")
+	sprite.modulate = Color(255,255,255)
+	timer.start(0.05)
+	
+	if (health == 0):
+		get_tree().reload_current_scene()
+		print("YOU DIED")
+	
+
+
+func _on_Timer_timeout():
+	sprite.modulate = Color(1,1,1)
