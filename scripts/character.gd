@@ -20,6 +20,17 @@ func _physics_process(delta):
 	if(Input.is_action_pressed("keyRight")):
 		velocity.x = SPEED
 	move_and_slide(velocity * delta)
+	if(velocity.x > 0):
+		$AnimationPlayer.play("walk")
+		$Sprite.scale.x = 2.5
+	elif(velocity.x < 0):
+		$AnimationPlayer.play("walk")
+		$Sprite.scale.x = -2.5
+	if(velocity.y != 0 and velocity.x ==0):
+		$AnimationPlayer.play("walk")
+	elif(velocity == Vector2(0,0)):
+		$AnimationPlayer.stop()
+		$Sprite.frame = 1
 	if(Input.is_action_pressed("restart")):
 		get_tree().reload_current_scene()
 var blincControl = 0
@@ -41,9 +52,6 @@ func blinc():
 	timer.start(0.1)
 func _on_Timer_timeout():
 	sprite.modulate = Color(1,1,1)
-
-
-
 
 
 func _on_Timer2_timeout():

@@ -9,7 +9,6 @@ func _ready():
 	if enemy:
 		direction = (enemy.position - player.position).normalized()
 		self.look_at(direction)
-	# direction = (get_viewport().get_mouse_position() - player.position ).normalized()
 	
 	global_position = player.position
 func _physics_process(delta):
