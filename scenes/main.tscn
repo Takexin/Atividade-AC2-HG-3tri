@@ -8,17 +8,20 @@
 [node name="main" type="Node2D"]
 
 [node name="character" parent="." instance=ExtResource( 1 )]
-position = Vector2( 257, 110 )
+position = Vector2( 388, 204 )
+collision_layer = 2
+collision_mask = 2
 
 [node name="Icon" type="Sprite" parent="."]
-position = Vector2( 387, 220 )
+position = Vector2( 361, 356 )
 scale = Vector2( 10.0313, 1 )
 texture = ExtResource( 2 )
 
 [node name="Enemy" parent="." instance=ExtResource( 3 )]
-position = Vector2( 33, 24 )
+collision_layer = 3
+collision_mask = 3
 
 [node name="KinematicBody2D" parent="." instance=ExtResource( 4 )]
-position = Vector2( 323, -8 )
+position = Vector2( 355, 24 )
 
 [connection signal="damage" from="Enemy" to="character" method="_on_Enemy_damage"]
