@@ -12,7 +12,6 @@ func _ready():
 	pass 
 
 func shoot(body: Node):
-	
 	if canShoot and body:
 		var projectileInstance = projectileScene.instance()
 		projectileInstance.set_name("projectile")
@@ -22,30 +21,28 @@ func shoot(body: Node):
 		$shootCooldown.start(weaponCooldown)
 	else:
 		isLookingAt = false
-		enemyQueue.pop_front()
-		if (enemyQueue.front() != null):
-			lookAt(enemyQueue.front())
 func _on_shootCooldown_timeout():
 	canShoot=true
 	shoot(lookAtNode)
 
 func _process(delta):
-	if(isLookingAt):
-		look_at(lookAtPos)
-
+	look_at(lookAtPos)
 func lookAt(body: Node2D):
 	if body:
 		isLookingAt = true
 		lookAtPos = body.position
 		lookAtNode = body
 		shoot(body)
-	else:
+	else: 
 		isLookingAt = false
 func _on_Area2D_body_entered(body):
+	print(enemyQueue)
 	var enemyName = "Enemy"
-	if body.get_name().substr(0, enemyName.length()) == enemyName and !isLookingAt:
-		print(body)
+	if body.get_name().substr(0, enemyName.length()) == enemyName:
 		enemyQueue.push_back(body)
 		lookAt(enemyQueue.front())
 
-
+func _on_Area2D_body_exited(body):
+	enemyQueue.erase(body)
+	
+	

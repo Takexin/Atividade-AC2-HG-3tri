@@ -5,6 +5,7 @@ signal damage
 var canDamage = true
 onready var timer = get_node("Timer")
 export var health = 100
+var xpScene = load("res://scenes/orbXP.tscn")
 
 func move_towards_player(player_position, delta, player):
 	var direction = (player_position - position).normalized()
@@ -37,4 +38,9 @@ func _on_Area2D_body_entered(body):
 		body.queue_free()
 		health-=30
 		if health <=0:
+			var xpInstance = xpScene.instance()
+			xpInstance.position = self.position
+			xpInstance.xpAmmount = 3
+			xpInstance.set_name("orbXP")
+			get_parent().add_child(xpInstance, true)
 			self.queue_free()

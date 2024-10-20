@@ -5,8 +5,17 @@ const SPEED = 15000
 onready var timer = get_node("Timer")
 onready var timer2 = get_node("Timer2")
 onready var sprite = get_node("Sprite")
+signal foundOrb
+
+
 func _ready():
 	pass
+func _process(delta):
+	if get_tree().get_root().get_node("main").get_children():
+		for child in get_tree().get_root().get_node("main").get_children():
+			if(!child.is_connected("damage",self, "_on_Enemy_damage")):
+				child.connect("damage", self, "_on_Enemy_damage")
+
 func _physics_process(delta):
 	var velocity = Vector2()
 	if(Input.is_action_pressed("keyUp")):
@@ -31,6 +40,7 @@ func _physics_process(delta):
 		$Sprite.frame = 1
 	if(Input.is_action_pressed("restart")):
 		get_tree().reload_current_scene()
+	
 var blincControl = 0
 var numLoops = 2
 
@@ -50,5 +60,14 @@ func blinc():
 	timer.start(0.1)
 func _on_Timer_timeout():
 	sprite.modulate = Color(1,1,1)
+func moveOrb(body):
+	var direction = (position - body.position).normalized() * 10
+	body.position -= direction
+	
 
 
+
+func _on_Area2D_body_entered(body):
+	var orb = "orbXP"
+	if body.get_name().substr(0, orb.length()) == orb:
+		emit_signal("foundOrb")

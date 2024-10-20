@@ -20,16 +20,16 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="EnemySpawn1" type="Node2D" parent="character"]
-position = Vector2( -298, -21 )
+position = Vector2( -632, 233 )
 
 [node name="EnemySpawn2" type="Node2D" parent="character"]
-position = Vector2( -308, -25 )
+position = Vector2( -607, -193 )
 
 [node name="EnemySpawn4" type="Node2D" parent="character"]
-position = Vector2( 232, -49 )
+position = Vector2( 514, 280 )
 
 [node name="EnemySpawn3" type="Node2D" parent="character"]
-position = Vector2( 229, -22 )
+position = Vector2( 550, -193 )
 
 [node name="EnemySpawnTimer" type="Timer" parent="."]
 
