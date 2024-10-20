@@ -15,6 +15,5 @@ func _on_EnemySpawnTimer_timeout():
 	var spawnLocation = round(randf()*3)
 	if spawnLocation == 0:
 		spawnLocation =1
-	enemyInstance.position = get_node("character/EnemySpawn%s" %spawnLocation).position
-	print(enemyInstance)
-	print(spawnLocation)
+	enemyInstance.position = get_node("character/EnemySpawn%s" %spawnLocation).global_position
+	

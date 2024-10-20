@@ -7,27 +7,29 @@
 [node name="main" type="Node2D"]
 script = ExtResource( 4 )
 
-[node name="character" parent="." instance=ExtResource( 1 )]
-position = Vector2( 388, 204 )
-collision_layer = 2
-collision_mask = 2
-
-[node name="EnemySpawn1" type="Node2D" parent="character"]
-position = Vector2( 570, 223 )
-
-[node name="EnemySpawn2" type="Node2D" parent="character"]
-position = Vector2( -314, 421 )
-
-[node name="EnemySpawn4" type="Node2D" parent="character"]
-position = Vector2( -670, -349 )
-
-[node name="EnemySpawn3" type="Node2D" parent="character"]
-position = Vector2( 756, -226 )
+[node name="projectileContainer" type="Node2D" parent="."]
 
 [node name="Icon" type="Sprite" parent="."]
 position = Vector2( 361, 356 )
 scale = Vector2( 10.0313, 1 )
 texture = ExtResource( 2 )
+
+[node name="character" parent="." instance=ExtResource( 1 )]
+position = Vector2( 461, 269 )
+collision_layer = 2
+collision_mask = 2
+
+[node name="EnemySpawn1" type="Node2D" parent="character"]
+position = Vector2( -298, -21 )
+
+[node name="EnemySpawn2" type="Node2D" parent="character"]
+position = Vector2( -308, -25 )
+
+[node name="EnemySpawn4" type="Node2D" parent="character"]
+position = Vector2( 232, -49 )
+
+[node name="EnemySpawn3" type="Node2D" parent="character"]
+position = Vector2( 229, -22 )
 
 [node name="EnemySpawnTimer" type="Timer" parent="."]
 

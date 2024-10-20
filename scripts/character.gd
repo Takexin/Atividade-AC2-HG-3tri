@@ -5,10 +5,8 @@ const SPEED = 15000
 onready var timer = get_node("Timer")
 onready var timer2 = get_node("Timer2")
 onready var sprite = get_node("Sprite")
-var bowScene = load("res://scenes/weakpons/bow.tscn")
-var bowInstance = bowScene.instance()
 func _ready():
-	shoot()
+	pass
 func _physics_process(delta):
 	var velocity = Vector2()
 	if(Input.is_action_pressed("keyUp")):
@@ -54,7 +52,3 @@ func _on_Timer_timeout():
 	sprite.modulate = Color(1,1,1)
 
 
-func _on_Timer2_timeout():
-	var bowInstance = bowScene.instance()
-	get_parent().add_child(bowInstance)
-	shoot()
