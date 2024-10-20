@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scenes/character.tscn" type="PackedScene" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
-[ext_resource path="res://scenes/Enemy.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scripts/main.gd" type="Script" id=4]
 
 [node name="main" type="Node2D"]
@@ -13,25 +12,23 @@ position = Vector2( 388, 204 )
 collision_layer = 2
 collision_mask = 2
 
+[node name="EnemySpawn1" type="Node2D" parent="character"]
+position = Vector2( 570, 223 )
+
+[node name="EnemySpawn2" type="Node2D" parent="character"]
+position = Vector2( -314, 421 )
+
+[node name="EnemySpawn4" type="Node2D" parent="character"]
+position = Vector2( -670, -349 )
+
+[node name="EnemySpawn3" type="Node2D" parent="character"]
+position = Vector2( 756, -226 )
+
 [node name="Icon" type="Sprite" parent="."]
 position = Vector2( 361, 356 )
 scale = Vector2( 10.0313, 1 )
 texture = ExtResource( 2 )
 
-[node name="Enemy" parent="." instance=ExtResource( 3 )]
-collision_layer = 3
-collision_mask = 3
+[node name="EnemySpawnTimer" type="Timer" parent="."]
 
-[node name="EnemySpawn1" type="Node2D" parent="Enemy"]
-position = Vector2( 958, 427 )
-
-[node name="EnemySpawn2" type="Node2D" parent="Enemy"]
-position = Vector2( -216, 485 )
-
-[node name="EnemySpawn4" type="Node2D" parent="Enemy"]
-position = Vector2( -282, -145 )
-
-[node name="EnemySpawn3" type="Node2D" parent="Enemy"]
-position = Vector2( 1144, -22 )
-
-[connection signal="damage" from="Enemy" to="character" method="_on_Enemy_damage"]
+[connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_EnemySpawnTimer_timeout"]

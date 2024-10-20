@@ -12,10 +12,11 @@ func _ready():
 	
 	global_position = player.position
 func _physics_process(delta):
-	
-	var collision = move_and_collide(direction * 10, delta)
-	if collision:
-		self.queue_free()
+	var enemy = get_parent().get_node("Enemy")
+	if enemy:
+		var collision = move_and_collide(direction * 10, delta)
+		if collision:
+			self.queue_free()
 func _on_Timer_timeout():
 	$Sprite.visible = true
 
