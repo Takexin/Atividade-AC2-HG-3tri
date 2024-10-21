@@ -14,7 +14,8 @@ func _physics_process(delta):
 		var direction = (player.position - position).normalized()
 		var collision = move_and_collide(direction * 10, delta)
 		if collision:
-			queue_free()
+			player.xp += xpAmmount
+			self.queue_free()
 
 func onOrbFound():
 	print("found orb AAAA")

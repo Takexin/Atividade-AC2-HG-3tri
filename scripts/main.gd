@@ -3,8 +3,7 @@ extends Node2D
 var enemyScene = load("res://scenes/Enemy.tscn")
 func _ready():
 	$EnemySpawnTimer.start(1)
-func _process(delta):
-		pass
+
 
 
 

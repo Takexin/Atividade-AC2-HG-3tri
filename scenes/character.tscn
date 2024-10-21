@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/images/walkCycle.png" type="Texture" id=1]
 [ext_resource path="res://scripts/character.gd" type="Script" id=2]
 [ext_resource path="res://scenes/weakpons/bow.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scripts/healthBar.gd" type="Script" id=4]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 32, 32 )
@@ -27,16 +28,24 @@ tracks/0/keys = {
 [sub_resource type="CircleShape2D" id=4]
 
 [node name="KinematicBody2D" type="KinematicBody2D"]
-collision_layer = 13
-collision_mask = 13
+collision_layer = 257
 script = ExtResource( 2 )
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+pause_mode = 1
+margin_left = -360.0
+margin_top = -201.0
+margin_right = -85.0
+margin_bottom = -187.0
+percent_visible = false
+script = ExtResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 2.5, 2.5 )
 texture = ExtResource( 1 )
 hframes = 2
 vframes = 2
-frame = 1
+frame = 2
 region_rect = Rect2( 0, 0, 32, 32 )
 
 [node name="Camera2D" type="Camera2D" parent="."]

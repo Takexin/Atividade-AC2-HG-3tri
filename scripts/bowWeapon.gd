@@ -35,6 +35,7 @@ func lookAt(body: Node2D):
 		shoot(body)
 	else: 
 		isLookingAt = false
+		
 func _on_Area2D_body_entered(body):
 	print(enemyQueue)
 	var enemyName = "Enemy"
