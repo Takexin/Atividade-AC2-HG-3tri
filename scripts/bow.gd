@@ -13,7 +13,8 @@ func _physics_process(delta):
 	var collision = move_and_collide(direction * 10, delta)
 	var enemyName = "Enemy"
 	if collision:
-		if !(collision.collider.get_name().substr(0, enemyName.length()) == enemyName):
+		if (collision.collider.is_in_group("enemy")):
+			collision.collider.takeDamage()
 			self.queue_free()
 func _on_Timer_timeout():
 	$Sprite.visible = true

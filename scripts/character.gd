@@ -14,15 +14,21 @@ signal tookDamage
 var enemyName = "Enemy"
 
 
-func levelUp():
-	level += 1
-	xp = 0
-	xpNeeded += xpNeeded*0.5 #50% increase each level
 
 
 func _ready():
 	$CanvasLayer/healthBar.max_value = health
 	$CanvasLayer/healthBar.value = health
+	$CanvasLayer/xpBar.max_value = xpNeeded
+	
+func levelUp():
+	level += 1
+	xp = 0
+	xpNeeded += xpNeeded*0.5 #50% increase each level
+	$CanvasLayer/xpBar.value = xp
+	$CanvasLayer/xpBar.max_value = xpNeeded
+	$CanvasLayer/Label.text = String(level)
+
 func _process(delta):
 	if get_tree().get_root().get_node("main").get_children():
 		for child in get_tree().get_root().get_node("main").get_children():
@@ -85,6 +91,7 @@ func _on_Area2D_body_entered(body):
 	if body.get_name().substr(0, orb.length()) == orb:
 		emit_signal("foundOrb")
 		xp += body.xpAmmount
+		$CanvasLayer/xpBar.value = xp
 		print(xp)
 		if xp >= xpNeeded:
 			levelUp()
