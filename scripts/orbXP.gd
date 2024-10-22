@@ -1,7 +1,7 @@
 extends KinematicBody2D
 #remember: low - 3, medium - 6, high: 12
 onready var player = get_parent().get_node("character")
-export var xpAmmount = 0
+export var xpAmmount = 3
 var move = false
 
 func _ready():

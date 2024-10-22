@@ -85,5 +85,6 @@ func _on_Area2D_body_entered(body):
 	if body.get_name().substr(0, orb.length()) == orb:
 		emit_signal("foundOrb")
 		xp += body.xpAmmount
+		print(xp)
 		if xp >= xpNeeded:
 			levelUp()

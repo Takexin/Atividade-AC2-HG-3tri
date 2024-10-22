@@ -23,11 +23,6 @@ func _process(delta):
 	#		if(!child.is_connected("projectileDamage",self, "_on_projectile_projectileDamage")):
 	#			child.connect("projectileDamage", self, "_on_projectile_projectileDamage")
 
-func _on_projectile_projectileDamage():
-	health-=30
-	if health <=0:
-		self.queue_free()
-
 func _on_Timer_timeout():
 	canDamage = true
 
