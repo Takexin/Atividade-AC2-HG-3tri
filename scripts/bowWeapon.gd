@@ -27,6 +27,10 @@ func _on_shootCooldown_timeout():
 
 func _process(delta):
 	look_at(lookAtPos)
+	if(lookAtPos < player.position):
+		$Sprite.scale.y = -2
+	else:
+		$Sprite.scale.y = 2
 func lookAt(body: Node2D):
 	if body:
 		isLookingAt = true
