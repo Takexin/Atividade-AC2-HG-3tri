@@ -1,6 +1,6 @@
 extends ProgressBar
 
-onready var player = get_parent().get_node("character")
+onready var player = get_parent().get_parent().get_node("character")
 func _ready():
 	pass
 func process():

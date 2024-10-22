@@ -21,8 +21,8 @@ func levelUp():
 
 
 func _ready():
-	$ProgressBar.max_value = health
-	$ProgressBar.value = health
+	$CanvasLayer/healthBar.max_value = health
+	$CanvasLayer/healthBar.value = health
 func _process(delta):
 	if get_tree().get_root().get_node("main").get_children():
 		for child in get_tree().get_root().get_node("main").get_children():
@@ -62,7 +62,7 @@ var numLoops = 2
 func _on_Enemy_damage():
 	health -= 1
 	print("damage taken")
-	$ProgressBar.value = health
+	$CanvasLayer/healthBar.value = health
 	blinc()
 	if (health == 0):
 		get_tree().reload_current_scene()
@@ -84,3 +84,6 @@ func _on_Area2D_body_entered(body):
 	var orb = "orbXP"
 	if body.get_name().substr(0, orb.length()) == orb:
 		emit_signal("foundOrb")
+		xp += body.xpAmmount
+		if xp >= xpNeeded:
+			levelUp()
