@@ -1,14 +1,25 @@
 extends KinematicBody2D
 
 export var health = 3
+export var xp = 0
+export var xpNeeded = 10
+export var level = 1
 const SPEED = 15000
 onready var timer = get_node("Timer")
 onready var timer2 = get_node("Timer2")
 onready var sprite = get_node("Sprite")
 signal foundOrb
 signal tookDamage
-export var xp = 0
+
 var enemyName = "Enemy"
+
+
+func levelUp():
+	level += 1
+	xp = 0
+	xpNeeded += xpNeeded*0.5 #50% increase each level
+
+
 func _ready():
 	$ProgressBar.max_value = health
 	$ProgressBar.value = health
