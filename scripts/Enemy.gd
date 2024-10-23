@@ -18,11 +18,7 @@ func _process(delta):
 	var player = get_parent().get_node("character")
 	if player:
 		move_towards_player(player.position, delta, player)
-	#if get_tree().get_root().get_node("main/projectileContainer").get_children():
-	#	for child in get_tree().get_root().get_node("main/projectileContainer").get_children():
-	#		if(!child.is_connected("projectileDamage",self, "_on_projectile_projectileDamage")):
-	#			child.connect("projectileDamage", self, "_on_projectile_projectileDamage")
-
+	
 func _on_Timer_timeout():
 	canDamage = true
 func takeDamage():
