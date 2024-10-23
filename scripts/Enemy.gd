@@ -12,6 +12,7 @@ func move_towards_player(player_position, delta, player):
 	var collision = move_and_collide(direction * speed, delta)
 	if(collision and canDamage and (collision.get_collider() == player)):
 		emit_signal("damage")
+		player._on_Enemy_damage()
 		canDamage = false
 		timer.start(1)
 func _process(delta):

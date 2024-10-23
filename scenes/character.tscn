@@ -10,7 +10,7 @@
 [ext_resource path="res://scenes/weakpons/Axe.tscn" type="PackedScene" id=8]
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 32, 32 )
+extents = Vector2( 17.5, 28.5 )
 
 [sub_resource type="Animation" id=3]
 resource_name = "walk"
@@ -71,6 +71,7 @@ smoothing_enabled = true
 smoothing_speed = 3.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -0.5, -3.5 )
 shape = SubResource( 2 )
 
 [node name="Timer" type="Timer" parent="."]

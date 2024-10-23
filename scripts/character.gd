@@ -30,11 +30,7 @@ func levelUp():
 	$CanvasLayer/Label.text = String(level)
 
 func _process(delta):
-	if get_tree().get_root().get_node("main").get_children():
-		for child in get_tree().get_root().get_node("main").get_children():
-			if(child.get_name().substr(0, enemyName.length()) == enemyName):
-				if(!child.is_connected("damage",self, "_on_Enemy_damage")):
-					child.connect("damage", self, "_on_Enemy_damage")
+	pass
 
 func _physics_process(delta):
 	var velocity = Vector2()
