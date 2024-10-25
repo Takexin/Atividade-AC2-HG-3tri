@@ -31,6 +31,8 @@ shape = SubResource( 1 )
 
 [node name="Damageflicker" type="Timer" parent="."]
 
+[node name="poisonTimer" type="Timer" parent="."]
+
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="timeout" from="Damageflicker" to="." method="_on_Damageflicker_timeout"]

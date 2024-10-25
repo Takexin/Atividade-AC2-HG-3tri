@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scripts/potion.gd" type="Script" id=1]
+[ext_resource path="res://assets/images/poção.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 5.4915, 10.5304 )
+
+[sub_resource type="CircleShape2D" id=2]
+
+[node name="potion" type="KinematicBody2D" groups=["weapon"]]
+scale = Vector2( 0.972979, 1.41799 )
+script = ExtResource( 1 )
+direction = null
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -2.56943, -0.352621 )
+rotation = 1.5708
+scale = Vector2( 1.22, 1.22 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+rotation = 1.5708
+scale = Vector2( 0.740554, 1 )
+texture = ExtResource( 2 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.05
+autostart = true
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( 2.38419e-07, 2.38419e-07 )
+rotation = 1.5708
+scale = Vector2( 0.4, 1.6 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2( 8.4, 6 )
+shape = SubResource( 2 )
+
+[node name="poisonTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="timeout" from="poisonTimer" to="." method="_on_poisonTimer_timeout"]
