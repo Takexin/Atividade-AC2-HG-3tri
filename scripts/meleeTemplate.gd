@@ -10,6 +10,7 @@ var canShoot = true
 var enemyQueue = []
 func _ready():
 	pass
+
 func attack(body: Node):
 	if canShoot and body:
 		$AnimationPlayer.play("swing")

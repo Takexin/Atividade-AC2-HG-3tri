@@ -13,14 +13,22 @@ signal tookDamage
 
 var enemyName = "Enemy"
 
+#Weapon instances
+var weaponBow = load("res://scenes/weakpons/bow.tscn")
+var weaponAxe = load("res://scenes/weakpons/Axe.tscn")
 
+var weapons = [weaponBow, weaponAxe]
 
 
 func _ready():
 	$CanvasLayer/healthBar.max_value = health
 	$CanvasLayer/healthBar.value = health
 	$CanvasLayer/xpBar.max_value = xpNeeded
-	
+
+#weapon toggle for testing
+func toggle():
+	pass
+
 func levelUp():
 	level += 1
 	xp = 0
@@ -29,8 +37,6 @@ func levelUp():
 	$CanvasLayer/xpBar.max_value = xpNeeded
 	$CanvasLayer/Label.text = String(level)
 
-func _process(delta):
-	pass
 
 func _physics_process(delta):
 	var velocity = Vector2()

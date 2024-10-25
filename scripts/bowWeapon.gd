@@ -11,6 +11,8 @@ var enemyQueue = []
 func _ready():
 	pass 
 
+
+
 func shoot(body: Node):
 	if canShoot and body:
 		var projectileInstance = projectileScene.instance()
