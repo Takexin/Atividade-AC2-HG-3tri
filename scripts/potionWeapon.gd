@@ -38,10 +38,9 @@ func lookAt(body: Node2D):
 		isLookingAt = false
 		
 func _on_Area2D_body_entered(body):
-	var enemyName = "Enemy"
-	if body.get_name().substr(0, enemyName.length()) == enemyName:
+	if body.is_in_group("enemy") and !isLookingAt:
 		enemyQueue.push_back(body)
 		lookAt(enemyQueue.front())
 
 func _on_Area2D_body_exited(body):
-	enemyQueue.erase(body)
+		enemyQueue.erase(body)

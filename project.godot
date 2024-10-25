@@ -12,11 +12,16 @@ config_version=4
 
 config/name="Trabalho-ac-hg"
 run/main_scene="res://scenes/main.tscn"
+config/use_custom_user_dir=true
 config/icon="res://icon.png"
 
 [display]
 
 window/size/resizable=false
+
+[global]
+
+vsync=false
 
 [gui]
 

@@ -16,7 +16,7 @@ func _physics_process(delta):
 		if (collision.collider.is_in_group("enemy")):
 			$Area2D.monitoring = true
 			direction = Vector2(0, 0)
-			self.hide()
+			$Sprite.visible = false
 func _on_Timer_timeout():
 	$Sprite.visible = true
 
