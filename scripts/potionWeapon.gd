@@ -1,6 +1,6 @@
 extends Node2D
 onready var player = get_parent().get_node(".")
-var projectileScene = load("res://scenes/weakpons/projectile.tscn")
+var projectileScene = load("res://scenes/weakpons/potion.tscn")
 
 export var weaponCooldown: float = 0
 var isLookingAt = false
@@ -27,11 +27,7 @@ func _on_shootCooldown_timeout():
 	shoot(lookAtNode)
 
 func _process(_delta):
-	look_at(lookAtPos)
-	if (lookAtPos < player.position):
-		$Sprite.scale.y = -2
-	else:
-		$Sprite.scale.y = 2
+	$anchor.look_at(lookAtPos)
 func lookAt(body: Node2D):
 	if body:
 		isLookingAt = true

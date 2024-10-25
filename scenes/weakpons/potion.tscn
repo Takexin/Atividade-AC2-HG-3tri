@@ -11,7 +11,6 @@ extents = Vector2( 5.4915, 10.5304 )
 [node name="potion" type="KinematicBody2D" groups=["weapon"]]
 scale = Vector2( 0.972979, 1.41799 )
 script = ExtResource( 1 )
-direction = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -2.56943, -0.352621 )
