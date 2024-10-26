@@ -5,6 +5,7 @@ var infectedScene = load("res://scenes/infectedPerson.tscn")
 var ratScene = load("res://scenes/rat.tscn")
 func _ready():
 	$EnemySpawnTimer.start(1)
+	pause_mode = Node.PAUSE_MODE_INHERIT
 
 
 

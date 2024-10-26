@@ -4,6 +4,7 @@ export var health = 3
 export var xp = 0
 export var xpNeeded = 10
 export var level = 1
+var canDamaged = true
 const SPEED = 15000
 onready var timer = get_node("Timer")
 onready var timer2 = get_node("Timer2")
@@ -68,14 +69,20 @@ var blincControl = 0
 var numLoops = 2
 
 func _on_Enemy_damage():
-	health -= 1
-	print("damage taken")
-	$CanvasLayer/healthBar.value = health
-	blinc()
-	if (health == 0):
-		get_tree().reload_current_scene()
-		print("YOU DIED")
+	if canDamaged:
+		health -= 1
+		canDamaged = false
+		$damageTimer.start()
+		print("damage taken")
+		$CanvasLayer/healthBar.value = health
+		blinc()
+		if (health == 0):
+			get_tree().reload_current_scene()
+			print("YOU DIED")
 
+func _on_damageTimer_timeout():
+	canDamaged = true
+	
 func shoot():
 	$Timer2.start(1)
 func blinc():
@@ -97,3 +104,5 @@ func _on_Area2D_body_entered(body):
 		print(xp)
 		if xp >= xpNeeded:
 			levelUp()
+
+

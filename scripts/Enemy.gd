@@ -15,8 +15,6 @@ func move_towards_player(player_position, delta, player):
 		player._on_Enemy_damage()
 		canDamage = false
 		timer.start(1)
-	elif collision.get_collider() != player:
-		$CollisionShape2D.set_deferred("disabled", true)
 func _process(delta):
 	var player = get_parent().get_node("character")
 	if player:

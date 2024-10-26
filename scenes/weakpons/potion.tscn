@@ -6,7 +6,7 @@
 [ext_resource path="res://assets/images/poisonCircle.png" type="Texture" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 5.4915, 10.5304 )
+extents = Vector2( 7.8037, 13.0577 )
 
 [sub_resource type="CircleShape2D" id=2]
 
@@ -62,14 +62,13 @@ scale = Vector2( 0.972979, 1.41799 )
 script = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -2.56943, -0.352621 )
+position = Vector2( 0.513905, 2.46828 )
 rotation = 1.5708
 scale = Vector2( 1.22, 1.22 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
-rotation = 1.5708
-scale = Vector2( 0.740554, 1 )
+scale = Vector2( 1.46354, 1 )
 texture = ExtResource( 2 )
 
 [node name="Timer" type="Timer" parent="."]
@@ -98,10 +97,8 @@ anims/RESET = SubResource( 5 )
 anims/circle = SubResource( 4 )
 
 [node name="Node2D" type="Node2D" parent="."]
-scale = Vector2( 1, 1 )
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="Node2D"]
-scale = Vector2( 1, 1 )
 emitting = false
 amount = 50
 texture = ExtResource( 3 )

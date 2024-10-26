@@ -51,8 +51,8 @@ outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 4 )
 
 [node name="KinematicBody2D" type="KinematicBody2D" groups=["player"]]
-collision_layer = 257
-collision_mask = 3
+collision_layer = 265
+collision_mask = 11
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -68,6 +68,10 @@ position = Vector2( -1, 0 )
 current = true
 zoom = Vector2( 0.9, 0.9 )
 process_mode = 0
+limit_left = -672
+limit_top = -384
+limit_right = 3552
+limit_bottom = 2016
 drag_margin_h_enabled = true
 drag_margin_v_enabled = true
 smoothing_enabled = true
@@ -76,6 +80,7 @@ drag_margin_left = 0.1
 drag_margin_top = 0.1
 drag_margin_right = 0.1
 drag_margin_bottom = 0.1
+editor_draw_limits = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -0.5, -3.5 )
@@ -103,9 +108,9 @@ shape = SubResource( 4 )
 [node name="healthBar" type="ProgressBar" parent="CanvasLayer"]
 pause_mode = 1
 margin_left = 37.0
-margin_top = 33.0
-margin_right = 145.0
-margin_bottom = 57.0
+margin_top = 35.0
+margin_right = 150.0
+margin_bottom = 55.0
 theme = ExtResource( 7 )
 percent_visible = false
 
@@ -155,6 +160,9 @@ position = Vector2( 7, 22 )
 scale = Vector2( 1.4375, 0.8125 )
 texture = ExtResource( 8 )
 
+[node name="damageTimer" type="Timer" parent="."]
+
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="timeout" from="Timer2" to="." method="_on_Timer2_timeout"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="timeout" from="damageTimer" to="." method="_on_damageTimer_timeout"]
