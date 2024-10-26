@@ -1,0 +1,60 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/images/infected.png" type="Texture" id=1]
+[ext_resource path="res://scripts/infected.gd" type="Script" id=2]
+[ext_resource path="res://assets/images/poisonCircle.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 11.5, 39.5 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "walk"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 1, 0 ]
+}
+
+[node name="KinematicBody2D" type="KinematicBody2D" groups=["enemy"]]
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -9, -10 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 1 )
+hframes = 2
+vframes = 2
+frame = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 1.5, -5.5 )
+shape = SubResource( 4 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="Damageflicker" type="Timer" parent="."]
+
+[node name="poisonTimer" type="Timer" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/walk = SubResource( 3 )
+
+[node name="shadow" type="Sprite" parent="."]
+modulate = Color( 0, 0, 0, 0.317647 )
+show_behind_parent = true
+position = Vector2( 4, 27 )
+scale = Vector2( 1.4375, 0.8125 )
+texture = ExtResource( 3 )
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="Damageflicker" to="." method="_on_Damageflicker_timeout"]
+[connection signal="timeout" from="poisonTimer" to="." method="_on_poisonTimer_timeout"]

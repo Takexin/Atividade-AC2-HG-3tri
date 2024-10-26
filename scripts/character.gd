@@ -24,9 +24,10 @@ func _ready():
 	$CanvasLayer/healthBar.max_value = health
 	$CanvasLayer/healthBar.value = health
 	$CanvasLayer/xpBar.max_value = xpNeeded
+	$Camera2D.zoom = Vector2(0.9,0.9)
 
 func _process(_delta):
-	$CanvasLayer/Label2.text = String($potionWeapon.isLookingAt)
+	$CanvasLayer/Label2.text = String(Engine.get_frames_per_second())
 func levelUp():
 	level += 1
 	xp = 0

@@ -10,17 +10,22 @@ var direction
 func move_towards_player(player_position, delta, player):
 	direction = (player_position - position).normalized()
 	var collision = move_and_collide(direction * speed, delta)
+	$AnimationPlayer.play("walk")
 	if (collision and canDamage and (collision.get_collider() == player)):
 		emit_signal("damage")
 		player._on_Enemy_damage()
 		canDamage = false
 		timer.start(1)
-	elif collision.get_collider() != player:
-		$CollisionShape2D.set_deferred("disabled", true)
 func _process(delta):
 	var player = get_parent().get_node("character")
 	if player:
 		move_towards_player(player.position, delta, player)
+	if player.position.x < position.x:
+		$Sprite.scale.x = 3
+		$CPUParticles2D.gravity.x = 50
+	elif player.position.x > position.x:
+		$Sprite.scale.x = -3
+		$CPUParticles2D.gravity.x = -50
 	
 func _on_Timer_timeout():
 	canDamage = true
