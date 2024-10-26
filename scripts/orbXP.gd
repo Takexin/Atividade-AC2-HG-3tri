@@ -18,5 +18,4 @@ func _physics_process(delta):
 			self.queue_free()
 
 func onOrbFound():
-	print("found orb AAAA")
 	move = true

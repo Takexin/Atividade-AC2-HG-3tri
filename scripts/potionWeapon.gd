@@ -3,7 +3,7 @@ onready var player = get_parent().get_node(".")
 var projectileScene = load("res://scenes/weakpons/potion.tscn")
 
 export var weaponCooldown: float = 0
-var isLookingAt = false
+export var isLookingAt = false
 var lookAtPos = Vector2(0, 0)
 var lookAtNode = Node2D
 var canShoot = true
@@ -17,17 +17,19 @@ func shoot(body: Node):
 		var projectileInstance = projectileScene.instance()
 		projectileInstance.set_name("projectile")
 		projectileInstance.direction = (body.position - player.position).normalized()
-		get_tree().get_root().get_node("main/projectileContainer").add_child(projectileInstance, true)
+		get_tree().get_root().get_node("main/projectileContainer").add_child(projectileInstance)
 		canShoot = false
 		$shootCooldown.start(weaponCooldown)
 	else:
-		isLookingAt = false
+		#isLookingAt = false
+		pass
 func _on_shootCooldown_timeout():
 	canShoot = true
 	shoot(lookAtNode)
 
 func _process(_delta):
 	$anchor.look_at(lookAtPos)
+	i = enemyQueue.size()
 func lookAt(body: Node2D):
 	if body:
 		isLookingAt = true
@@ -36,11 +38,11 @@ func lookAt(body: Node2D):
 		shoot(body)
 	else:
 		isLookingAt = false
-		
+var i = enemyQueue.size()
 func _on_Area2D_body_entered(body):
-	if body.is_in_group("enemy") and !isLookingAt:
-		enemyQueue.push_back(body)
-		lookAt(enemyQueue.front())
+	if body.is_in_group("enemy"):
+		lookAt(body)
 
 func _on_Area2D_body_exited(body):
+	if body.is_in_group("enemy"):
 		enemyQueue.erase(body)

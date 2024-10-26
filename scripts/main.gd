@@ -9,8 +9,7 @@ func _ready():
 
 func _on_EnemySpawnTimer_timeout():
 	var enemyInstance = enemyScene.instance()
-	enemyInstance.set_name("Enemy")
-	add_child(enemyInstance, true)
+	add_child(enemyInstance)
 	var spawnLocation = round(randf()*3)
 	if spawnLocation == 0:
 		spawnLocation =1

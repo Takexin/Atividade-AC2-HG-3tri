@@ -25,10 +25,8 @@ func _ready():
 	$CanvasLayer/healthBar.value = health
 	$CanvasLayer/xpBar.max_value = xpNeeded
 
-#weapon toggle for testing
-func toggle():
-	pass
-
+func _process(_delta):
+	$CanvasLayer/Label2.text = String($potionWeapon.isLookingAt)
 func levelUp():
 	level += 1
 	xp = 0

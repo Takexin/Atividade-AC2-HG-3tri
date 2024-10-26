@@ -1,12 +1,61 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scripts/potion.gd" type="Script" id=1]
 [ext_resource path="res://assets/images/poção.png" type="Texture" id=2]
+[ext_resource path="res://assets/images/xp.png" type="Texture" id=3]
+[ext_resource path="res://assets/images/poisonCircle.png" type="Texture" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 5.4915, 10.5304 )
 
 [sub_resource type="CircleShape2D" id=2]
+
+[sub_resource type="Animation" id=5]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 360.0 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "circle"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.8, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1e-05, 1e-05 ), Vector2( 6, 4.2 ), Vector2( 5, 3.5 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rotation_degrees")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 720.0 ]
+}
+
+[sub_resource type="Gradient" id=3]
+interpolation_mode = 2
+offsets = PoolRealArray( 0, 0.0558659, 0.424581 )
+colors = PoolColorArray( 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1 )
 
 [node name="potion" type="KinematicBody2D" groups=["weapon"]]
 scale = Vector2( 0.972979, 1.41799 )
@@ -40,7 +89,41 @@ shape = SubResource( 2 )
 
 [node name="poisonTimer" type="Timer" parent="."]
 
+[node name="despawnTimer" type="Timer" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../PoisonCircle")
+playback_speed = 2.5
+anims/RESET = SubResource( 5 )
+anims/circle = SubResource( 4 )
+
+[node name="Node2D" type="Node2D" parent="."]
+scale = Vector2( 1, 1 )
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Node2D"]
+scale = Vector2( 1, 1 )
+emitting = false
+amount = 50
+texture = ExtResource( 3 )
+emission_shape = 1
+emission_sphere_radius = 55.0
+gravity = Vector2( 0, -98 )
+damping = 17.61
+scale_amount = 2.0
+scale_amount_random = 1.0
+color = Color( 0.160784, 0.376471, 0.12549, 1 )
+color_ramp = SubResource( 3 )
+anim_speed = 32.88
+
+[node name="PoisonCircle" type="Sprite" parent="."]
+modulate = Color( 0.215686, 0.462745, 0.133333, 0.568627 )
+show_behind_parent = true
+rotation = 6.28319
+scale = Vector2( 1e-05, 1e-05 )
+texture = ExtResource( 4 )
+
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="timeout" from="poisonTimer" to="." method="_on_poisonTimer_timeout"]
+[connection signal="timeout" from="despawnTimer" to="." method="_on_despawnTimer_timeout"]

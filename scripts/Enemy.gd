@@ -39,12 +39,10 @@ func takeDamage(isPoison: bool = false, damage = 30):
 func poison():
 	var i = 0
 	while i < 4:
-		print("went on loop")
 		$poisonTimer.start(1)
 		yield ()
 		i += 1
 func _on_poisonTimer_timeout():
-	print("timer went out")
 	var function = poison()
 	takeDamage(true, 10)
 	function.resume()

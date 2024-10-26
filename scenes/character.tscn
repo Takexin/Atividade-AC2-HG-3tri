@@ -132,6 +132,12 @@ rect_scale = Vector2( 1, 0.981809 )
 custom_fonts/font = SubResource( 9 )
 text = "1"
 
+[node name="Label2" type="Label" parent="CanvasLayer"]
+margin_left = 256.0
+margin_top = 22.0
+margin_right = 296.0
+margin_bottom = 36.0
+
 [node name="potionWeapon" parent="." instance=ExtResource( 3 )]
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
