@@ -1,6 +1,6 @@
 extends Node2D
 onready var player = get_parent().get_node(".")
-var projectileScene = load("res://scenes/weakpons/potion.tscn")
+var projectileScene = preload("res://scenes/weakpons/potion.tscn")
 
 export var weaponCooldown: float = 0
 export var isLookingAt = false

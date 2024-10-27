@@ -17,6 +17,10 @@ var enemyName = "Enemy"
 #Weapon instances
 var weaponBow = load("res://scenes/weakpons/bow.tscn")
 var weaponAxe = load("res://scenes/weakpons/Axe.tscn")
+var femur = preload("res://scenes/weakpons/Femur.tscn")
+var mace = preload("res://scenes/weakpons/mace.tscn")
+var potion = preload("res://scenes/weakpons/potionWeapon.tscn")
+var sword = preload("res://scenes/weakpons/sword.tscn")
 
 var weapons = [weaponBow, weaponAxe]
 
@@ -26,7 +30,7 @@ func _ready():
 	$CanvasLayer/healthBar.value = health
 	$CanvasLayer/xpBar.max_value = xpNeeded
 	$Camera2D.zoom = Vector2(0.9,0.9)
-
+	
 func _process(_delta):
 	$CanvasLayer/Label2.text = String(Engine.get_frames_per_second())
 func levelUp():
@@ -93,6 +97,11 @@ func moveOrb(body):
 	var direction = (position - body.position).normalized() * 10
 	body.position -= direction
 	
+func addWeapon(weaponScene):
+	var weapon = weaponScene.instance()
+	weapon.global_position = global_position
+	add_child(weapon)
+	weapon.global_position = global_position
 
 func _on_Area2D_body_entered(body):
 	var orb = "orbXP"

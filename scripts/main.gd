@@ -10,7 +10,6 @@ func _ready():
 
 
 
-
 func _on_EnemySpawnTimer_timeout():
 	var enemyInstance
 	var enemyType = randf()

@@ -1,6 +1,6 @@
 extends Node2D
-onready var player = get_parent().get_node(".")
-var projectileScene = load("res://scenes/weakpons/projectile.tscn")
+onready var player = get_tree().get_root().get_node("Core/main/character")
+var projectileScene = preload("res://scenes/weakpons/projectile.tscn")
 
 export var weaponCooldown: float = 0
 var isLookingAt = false
@@ -17,7 +17,7 @@ func shoot(body: Node):
 		var projectileInstance = projectileScene.instance()
 		projectileInstance.set_name("projectile")
 		projectileInstance.direction = (body.position - player.position).normalized()
-		get_tree().get_root().get_node("main/projectileContainer").add_child(projectileInstance, true)
+		get_tree().get_root().get_node("Core/main/projectileContainer").add_child(projectileInstance, true)
 		canShoot = false
 		$shootCooldown.start(weaponCooldown)
 	else:
@@ -27,6 +27,7 @@ func _on_shootCooldown_timeout():
 	shoot(lookAtNode)
 
 func _process(_delta):
+
 	look_at(lookAtPos)
 	if (lookAtPos < player.position):
 		$Sprite.scale.y = -2

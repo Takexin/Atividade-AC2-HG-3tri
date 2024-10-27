@@ -1,5 +1,5 @@
 extends Node2D
-onready var player = get_parent().get_node(".")
+onready var player = get_tree().get_root().get_node("Core/main/character")
 var projectileScene = load("res://scenes/weakpons/projectile.tscn")
 
 export var weaponCooldown:float = 0
@@ -42,13 +42,11 @@ func lookAt(body: Node2D):
 		isLookingAt = false
 		
 func _on_Area2D_body_entered(body):
-	var enemyName = "Enemy"
-	if body.get_name().substr(0, enemyName.length()) == enemyName:
-		enemyQueue.push_back(body)
-		lookAt(enemyQueue.front())
+	if body.is_in_group("enemy"):
+		lookAt(body)
 
 func _on_Area2D_body_exited(body):
-	enemyQueue.erase(body)
+	pass
 
 func _on_SpriteArea2D_body_entered(body):
 	if body.is_in_group("enemy"):

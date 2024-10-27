@@ -1,11 +1,11 @@
 extends Control
 
 onready var startScene = "res://scenes/start.tscn"
-var canPause = true
+export var canPause = true
 
 # Called when the node enters the scene tree for the first time.
 
-func _process(delta):
+func _process(_delta):
 	$Popup.rect_size = get_viewport_rect().size
 	$Dead.rect_size = get_viewport_rect().size
 	if Input.is_action_just_pressed("pause") and canPause:
