@@ -1,0 +1,72 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/bars/new_dynamicfont.tres" type="DynamicFont" id=2]
+[ext_resource path="res://assets/images/bow.png" type="Texture" id=3]
+[ext_resource path="res://scripts/weaponSelection.gd" type="Script" id=4]
+
+[node name="weaponSelection" type="Popup"]
+visible = true
+script = ExtResource( 4 )
+
+[node name="Button2" type="Button" parent="." groups=["button"]]
+anchor_left = 0.35
+anchor_top = 0.2
+anchor_right = 0.35
+anchor_bottom = 0.2
+margin_left = 161.0
+margin_top = 140.0
+margin_right = 358.0
+margin_bottom = 207.0
+custom_fonts/font = ExtResource( 2 )
+text = "Continue"
+
+[node name="Sprite" type="Sprite" parent="Button2"]
+position = Vector2( -36, 29 )
+scale = Vector2( 2.5, 2.5 )
+texture = ExtResource( 3 )
+
+[node name="Button3" type="Button" parent="." groups=["button"]]
+anchor_left = 0.35
+anchor_top = 0.2
+anchor_right = 0.35
+anchor_bottom = 0.2
+margin_left = 160.0
+margin_top = 222.0
+margin_right = 357.0
+margin_bottom = 289.0
+custom_fonts/font = ExtResource( 2 )
+text = "Continue"
+
+[node name="Sprite" type="Sprite" parent="Button3"]
+position = Vector2( -36, 29 )
+scale = Vector2( 2.5, 2.5 )
+texture = ExtResource( 3 )
+
+[node name="Button4" type="Button" parent="." groups=["button"]]
+anchor_left = 0.35
+anchor_top = 0.2
+anchor_right = 0.35
+anchor_bottom = 0.2
+margin_left = 160.0
+margin_top = 306.0
+margin_right = 357.0
+margin_bottom = 373.0
+custom_fonts/font = ExtResource( 2 )
+text = "Continue"
+
+[node name="Sprite" type="Sprite" parent="Button4"]
+position = Vector2( -36, 29 )
+scale = Vector2( 2.5, 2.5 )
+texture = ExtResource( 3 )
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.35
+anchor_top = 0.2
+anchor_right = 0.35
+anchor_bottom = 0.2
+margin_left = 6.0
+margin_top = 6.0
+margin_right = 281.0
+margin_bottom = 67.0
+custom_fonts/font = ExtResource( 2 )
+text = "Select Weapon"

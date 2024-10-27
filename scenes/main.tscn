@@ -605,7 +605,6 @@ texture = ExtResource( 7 )
 
 [node name="Dead" type="Popup" parent="CanvasLayer/Control2"]
 pause_mode = 2
-visible = true
 margin_right = 40.0
 margin_bottom = 40.0
 
