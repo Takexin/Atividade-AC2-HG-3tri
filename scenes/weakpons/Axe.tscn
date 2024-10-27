@@ -12,7 +12,7 @@ extents = Vector2( 8.69945, 5.93333 )
 [sub_resource type="Animation" id=2]
 length = 0.5
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("anchor/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -28,7 +28,9 @@ tracks/0/keys = {
 script = ExtResource( 3 )
 weaponCooldown = 5.0
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="anchor" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="anchor"]
 visible = false
 position = Vector2( 65, 0 )
 scale = Vector2( 3, 3 )
@@ -38,12 +40,12 @@ hframes = 2
 vframes = 2
 frame = 2
 
-[node name="SpriteArea2D" type="Area2D" parent="Sprite"]
+[node name="SpriteArea2D" type="Area2D" parent="anchor/Sprite"]
 collision_layer = 3
 collision_mask = 3
 monitoring = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/SpriteArea2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="anchor/Sprite/SpriteArea2D"]
 position = Vector2( -1, -0.500001 )
 scale = Vector2( 3, 3.009 )
 shape = SubResource( 3 )
@@ -62,7 +64,7 @@ shape = SubResource( 1 )
 playback_speed = 0.5
 anims/swing = SubResource( 2 )
 
-[connection signal="body_entered" from="Sprite/SpriteArea2D" to="." method="_on_SpriteArea2D_body_entered"]
+[connection signal="body_entered" from="anchor/Sprite/SpriteArea2D" to="." method="_on_SpriteArea2D_body_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]
 [connection signal="timeout" from="shootCooldown" to="." method="_on_shootCooldown_timeout"]

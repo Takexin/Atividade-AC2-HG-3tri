@@ -1,6 +1,6 @@
 extends KinematicBody2D
 onready var player = get_parent().get_parent().get_node("character")
-onready var bow = get_parent().get_parent().get_node("character/bow/Sprite")
+onready var bow = get_parent().get_parent().get_node("character/bow/anchor/Sprite")
 onready var timer = get_node("Timer")
 const speed = 300
 export var direction = Vector2(0, 0)

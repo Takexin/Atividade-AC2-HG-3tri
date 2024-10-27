@@ -14,8 +14,8 @@ func _ready():
 func attack(body: Node):
 	if canShoot and body:
 		$AnimationPlayer.play("swing")
-		$Sprite.visible = true
-		$Sprite/SpriteArea2D.monitoring = true
+		$anchor/Sprite.visible = true
+		$anchor/Sprite/SpriteArea2D.monitoring = true
 		canShoot = false
 		$shootCooldown.start(weaponCooldown)
 	else:
@@ -26,12 +26,12 @@ func _on_shootCooldown_timeout():
 	attack(lookAtNode)
 
 func _process(delta):
-	look_at(lookAtPos)
+	$anchor.look_at(lookAtPos)
 	if player:
 		if(lookAtPos < player.position and canShoot == false):
-			$Sprite.scale.y = -3
+			$anchor/Sprite.scale.y = -3
 		else:
-			$Sprite.scale.y = 3
+			$anchor/Sprite.scale.y = 3
 func lookAt(body: Node2D):
 	if body:
 		isLookingAt = true
@@ -56,7 +56,7 @@ func _on_SpriteArea2D_body_entered(body):
 
 func _on_AnimationPlayer_animation_finished(anim_name):
 	
-	$Sprite/SpriteArea2D.monitoring = false
+	$anchor/Sprite/SpriteArea2D.monitoring = false
 	$AnimationPlayer.stop()
-	$Sprite.visible = false
-	$Sprite.frame = 2
+	$anchor/Sprite.visible = false
+	$anchor/Sprite.frame = 2
