@@ -1,14 +1,15 @@
 extends KinematicBody2D
 
-export var health = 3
+export var health = 10
 export var xp = 0
-export var xpNeeded = 10
+export var xpNeeded = 30
 export var level = 1
 var canDamaged = true
 const SPEED = 15000
 onready var timer = get_node("Timer")
 onready var timer2 = get_node("Timer2")
 onready var sprite = get_node("Sprite")
+onready var weaponSelect = get_tree().get_root().get_node("Core/CanvasLayer/Control2/weaponSelection")
 signal foundOrb
 
 
@@ -40,6 +41,7 @@ func levelUp():
 	$CanvasLayer/xpBar.value = xp
 	$CanvasLayer/xpBar.max_value = xpNeeded
 	$CanvasLayer/Label.text = String(level)
+	weaponSelect.runRandom()
 
 
 func _physics_process(delta):
@@ -104,8 +106,7 @@ func addWeapon(weaponScene):
 	weapon.global_position = global_position
 
 func _on_Area2D_body_entered(body):
-	var orb = "orbXP"
-	if body.get_name().substr(0, orb.length()) == orb:
+	if body.is_in_group("xp"):
 		emit_signal("foundOrb")
 		xp += body.xpAmmount
 		$CanvasLayer/xpBar.value = xp

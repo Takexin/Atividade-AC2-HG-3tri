@@ -21,7 +21,7 @@ onready var player = get_tree().get_root().get_node("Core/main/character")
 
 func _process(_delta): # for testing, remove later
 	rect_size = get_viewport_rect().size
-	rect_position = get_viewport_rect().size/2
+	#rect_position = get_viewport_rect().size/2
 func _ready():
 	randomize()
 	runRandom()
@@ -29,8 +29,8 @@ var randomNums = []
 var numChecker = []
 func runRandom():
 	self.popup()
-	#get_tree().paused = true
-	#get_parent().get_node(".").canPause = false #parent node (control2 on main)
+	get_tree().paused = true
+	get_parent().get_node(".").canPause = false #parent node (control2 on main)
 	var i =0
 	while i < 3:
 		var hasSeen = false
@@ -67,15 +67,17 @@ func runRandom():
 					child.get_node("Sprite").texture = swordSprite
 			
 func closePop():
+	randomNums = []
+	numChecker = []
 	get_parent().canPause = true
 	get_tree().paused = false
-	self.hide()
+	hide()
 
 	#player.addWeapon(weapons[randomNums[0]-1])
 	#player.addWeapon("res://scenes/weakpons/Axe.tscn")
 func _on_Button2_button_up():
-	closePop()
 	player.addWeapon(weapons[randomNums[0]-1])
+	closePop()
 	
 
 

@@ -29,7 +29,6 @@ func _on_shootCooldown_timeout():
 
 func _process(_delta):
 	$anchor.look_at(lookAtPos)
-	i = enemyQueue.size()
 func lookAt(body: Node2D):
 	if body:
 		isLookingAt = true
@@ -38,11 +37,9 @@ func lookAt(body: Node2D):
 		shoot(body)
 	else:
 		isLookingAt = false
-var i = enemyQueue.size()
 func _on_Area2D_body_entered(body):
 	if body.is_in_group("enemy"):
 		lookAt(body)
 
 func _on_Area2D_body_exited(body):
-	if body.is_in_group("enemy"):
-		enemyQueue.erase(body)
+	pass

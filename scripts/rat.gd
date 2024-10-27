@@ -39,8 +39,7 @@ func takeDamage(isPoison: bool = false, damage = 30):
 		var xpInstance = xpScene.instance()
 		xpInstance.position = self.position
 		xpInstance.xpAmmount = 3
-		xpInstance.set_name("orbXP")
-		get_parent().add_child(xpInstance, true)
+		get_parent().call_deferred("add_child", xpInstance)
 		self.queue_free()
 
 func poison():
