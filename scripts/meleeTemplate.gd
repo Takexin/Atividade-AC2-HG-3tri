@@ -44,14 +44,17 @@ func lookAt(body: Node2D):
 func _on_Area2D_body_entered(body):
 	if body.is_in_group("enemy"):
 		lookAt(body)
-
+	elif body.is_in_group("xp"):
+		print("aaa")
+		body.queue_free()
 func _on_Area2D_body_exited(body):
 	pass
-
+	
 func _on_SpriteArea2D_body_entered(body):
 	if body.is_in_group("enemy"):
 		print("found enemy")
 		body.takeDamage()
+	
 
 
 func _on_AnimationPlayer_animation_finished(anim_name):

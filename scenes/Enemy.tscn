@@ -24,9 +24,6 @@ wait_time = 0.5
 
 [node name="poisonTimer" type="Timer" parent="."]
 
-[node name="canDamaged" type="Timer" parent="."]
-
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="timeout" from="Damageflicker" to="." method="_on_Damageflicker_timeout"]
 [connection signal="timeout" from="poisonTimer" to="." method="_on_poisonTimer_timeout"]
-[connection signal="timeout" from="canDamaged" to="." method="_on_canDamaged_timeout"]

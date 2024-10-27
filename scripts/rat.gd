@@ -36,10 +36,15 @@ func takeDamage(isPoison: bool = false, damage = 30):
 	$Sprite.modulate = Color(255, 255, 255)
 	$Damageflicker.start(0.1)
 	if health <= 0:
+		var player = get_parent().get_node("character")
 		var xpInstance = xpScene.instance()
 		xpInstance.position = self.position
 		xpInstance.xpAmmount = 3
+		xpInstance.set_name("orbXP")
+		player.get_node("Area2D").monitoring = false
 		get_parent().call_deferred("add_child", xpInstance)
+		yield(get_tree().create_timer(0.01),"timeout")
+		player.get_node("Area2D").monitoring = true
 		self.queue_free()
 
 func poison():

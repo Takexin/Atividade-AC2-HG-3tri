@@ -3,7 +3,6 @@ extends KinematicBody2D
 const speed = 1
 signal damage
 var canDamage = true
-var canDamaged = true
 onready var timer = get_node("Timer")
 export var health = 100
 var xpScene = load("res://scenes/orbXP.tscn")
@@ -24,21 +23,20 @@ func _process(delta):
 func _on_Timer_timeout():
 	canDamage = true
 func takeDamage(isPoison: bool = false, damage = 30):
-	if canDamaged:
-		$canDamaged.start(1)
-		canDamaged=false
-		health -= damage
-		if !isPoison:
-			position -= direction * 30
-		$Sprite.modulate = Color(255, 255, 255)
-		$Damageflicker.start(0.1)
-		if health <= 0:
+	health -= damage
+	if !isPoison:
+		position -= direction * 30
+	$Sprite.modulate = Color(255, 255, 255)
+	$Damageflicker.start(0.1)
+	if health <= 0:
+		print(direction)
+		if (direction < Vector2(1000,1000) and direction > Vector2(-1000,-1000)): 
 			var xpInstance = xpScene.instance()
 			xpInstance.position = self.position
 			xpInstance.xpAmmount = 3
 			xpInstance.set_name("orbXP")
 			get_parent().call_deferred("add_child", xpInstance)
-			self.queue_free()
+		self.queue_free()
 func poison():
 	var i = 0
 	while i < 4:
@@ -49,9 +47,3 @@ func poison():
 
 func _on_Damageflicker_timeout():
 	$Sprite.modulate = Color(1, 1, 1)
-
-
-
-
-func _on_canDamaged_timeout():
-	canDamaged=true

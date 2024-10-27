@@ -16,14 +16,14 @@ signal foundOrb
 var enemyName = "Enemy"
 
 #Weapon instances
-var weaponBow = load("res://scenes/weakpons/bow.tscn")
-var weaponAxe = load("res://scenes/weakpons/Axe.tscn")
-var femur = preload("res://scenes/weakpons/Femur.tscn")
-var mace = preload("res://scenes/weakpons/mace.tscn")
-var potion = preload("res://scenes/weakpons/potionWeapon.tscn")
-var sword = preload("res://scenes/weakpons/sword.tscn")
+# var weaponBow = load("res://scenes/weakpons/bow.tscn")
+# var weaponAxe = load("res://scenes/weakpons/Axe.tscn")
+# var femur = preload("res://scenes/weakpons/Femur.tscn")
+# var mace = preload("res://scenes/weakpons/mace.tscn")
+# var potion = preload("res://scenes/weakpons/potionWeapon.tscn")
+# var sword = preload("res://scenes/weakpons/sword.tscn")
 
-var weapons = [weaponBow, weaponAxe]
+# var weapons = [weaponBow, weaponAxe]
 
 
 func _ready():
@@ -98,13 +98,18 @@ func _on_Timer_timeout():
 func moveOrb(body):
 	var direction = (position - body.position).normalized() * 10
 	body.position -= direction
-	
+
+var weapons = []
 func addWeapon(weaponScene):
 	var weapon = weaponScene.instance()
-	weapon.global_position = global_position
-	add_child(weapon)
-	weapon.global_position = global_position
-
+	if weapons.find(weapon) == -1: 
+		weapons.push_back(weapon)
+		print(weapon)
+		weapon.global_position = global_position
+		add_child(weapon)
+		weapon.global_position = global_position
+	else:
+		print("already exists")
 func _on_Area2D_body_entered(body):
 	if body.is_in_group("xp"):
 		emit_signal("foundOrb")
