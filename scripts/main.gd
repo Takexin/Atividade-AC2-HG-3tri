@@ -3,6 +3,7 @@ extends Node2D
 var enemyScene = load("res://scenes/Enemy.tscn")
 var infectedScene = load("res://scenes/infectedPerson.tscn")
 var ratScene = load("res://scenes/rat.tscn")
+var startScene = load("res://scenes/start.tscn")
 func _ready():
 	$EnemySpawnTimer.start(1)
 	pause_mode = Node.PAUSE_MODE_INHERIT
@@ -23,3 +24,5 @@ func _on_EnemySpawnTimer_timeout():
 		spawnLocation =1
 	enemyInstance.position = get_node("character/EnemySpawn%s" %spawnLocation).global_position
 	
+
+

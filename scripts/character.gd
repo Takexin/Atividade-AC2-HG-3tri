@@ -77,8 +77,7 @@ func _on_Enemy_damage():
 		$CanvasLayer/healthBar.value = health
 		blinc()
 		if (health == 0):
-			get_tree().reload_current_scene()
-			print("YOU DIED")
+			get_tree().get_root().get_node("Core/CanvasLayer/Control2").deadScreen()
 
 func _on_damageTimer_timeout():
 	canDamaged = true

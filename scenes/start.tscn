@@ -156,3 +156,6 @@ position = Vector2( 500, 216 )
 texture = ExtResource( 7 )
 texture_scale = 50.0
 energy = 16.0
+
+[connection signal="button_up" from="CanvasLayer/Control/Button" to="." method="_on_Button_button_up"]
+[connection signal="button_up" from="CanvasLayer/Control/Button3" to="." method="_on_Button3_button_up"]

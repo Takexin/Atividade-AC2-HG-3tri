@@ -17,7 +17,7 @@ func shoot(body: Node):
 		var projectileInstance = projectileScene.instance()
 		projectileInstance.set_name("projectile")
 		projectileInstance.direction = (body.position - player.position).normalized()
-		get_tree().get_root().get_node("main/projectileContainer").add_child(projectileInstance)
+		get_tree().get_root().get_node("Core/main/projectileContainer").add_child(projectileInstance)
 		canShoot = false
 		$shootCooldown.start(weaponCooldown)
 	else:
