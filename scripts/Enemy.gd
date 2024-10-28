@@ -6,6 +6,7 @@ var canDamage = true
 onready var timer = get_node("Timer")
 export var health = 100
 var xpScene = load("res://scenes/orbXP.tscn")
+var heartScene = load("res://scenes/health.tscn")
 var direction
 func move_towards_player(player_position, delta, player):
 	direction = (player_position - position).normalized()
@@ -29,13 +30,13 @@ func takeDamage(isPoison: bool = false, damage = 30):
 	$Sprite.modulate = Color(255, 255, 255)
 	$Damageflicker.start(0.1)
 	if health <= 0:
-		print(direction)
 		if (direction < Vector2(1000,1000) and direction > Vector2(-1000,-1000)): 
-			var xpInstance = xpScene.instance()
-			xpInstance.position = self.position
-			xpInstance.xpAmmount = 3
-			xpInstance.set_name("orbXP")
-			get_parent().call_deferred("add_child", xpInstance)
+			if randf() >= 0.8:
+				var xpInstance = xpScene.instance()
+				xpInstance.position = self.position
+				xpInstance.xpAmmount = 3
+				xpInstance.set_name("orbXP")
+				get_parent().call_deferred("add_child", xpInstance)
 		self.queue_free()
 func poison():
 	var i = 0

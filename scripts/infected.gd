@@ -7,6 +7,7 @@ var canPlay = true
 onready var timer = get_node("Timer")
 export var health = 100
 var xpScene = load("res://scenes/orbXP.tscn")
+var heartScene = load("res://scenes/health.tscn")
 var direction
 func move_towards_player(player_position, delta, player):
 	direction = (player_position - position).normalized()
@@ -26,6 +27,7 @@ func _process(delta):
 	elif player.position.x > position.x:
 		$Sprite.scale.x = 3
 	
+var canDie = true
 func _on_Timer_timeout():
 	canDamage = true
 func takeDamage(isPoison: bool = false, damage = 30):
@@ -35,20 +37,31 @@ func takeDamage(isPoison: bool = false, damage = 30):
 		position -= direction * 30
 	$Sprite.modulate = Color(255, 255, 255)
 	$Damageflicker.start(0.1)
-	if health <= 0:
+	if health <= 0 and canDie:
+		canDie = false
 		var player = get_parent().get_node("character")
-		var xpInstance = xpScene.instance()
-		xpInstance.position = self.position
-		xpInstance.xpAmmount = 3
-		xpInstance.set_name("orbXP")
-		player.get_node("Area2D").monitoring = false
-		get_parent().call_deferred("add_child", xpInstance)
-		yield(get_tree().create_timer(0.01),"timeout")
-		player.get_node("Area2D").monitoring = true
+		if randf() >= 0.1:
+			var xpInstance = xpScene.instance()
+			xpInstance.position = self.position
+			xpInstance.xpAmmount = 3
+			xpInstance.set_name("orbXP")
+			player.get_node("Area2D").monitoring = false
+			get_parent().call_deferred("add_child", xpInstance)
+			yield(get_tree().create_timer(0.01),"timeout")
+			player.get_node("Area2D").monitoring = true
+		else:
+			var xpInstance = heartScene.instance()
+			xpInstance.position = self.position
+			xpInstance.set_name("orbXP")
+			player.get_node("Area2D").monitoring = false
+			get_parent().call_deferred("add_child", xpInstance)
+			yield(get_tree().create_timer(0.01),"timeout")
+			player.get_node("Area2D").monitoring = true
 		self.queue_free()
 
 
 func poison():
+	speed -= 0.2
 	var i = 0
 	while i < 4:
 		$poisonTimer.start(1)

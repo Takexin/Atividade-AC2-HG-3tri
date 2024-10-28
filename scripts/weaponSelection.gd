@@ -28,6 +28,7 @@ func _ready():
 var randomNums = []
 var numChecker = []
 func runRandom():
+	popup_exclusive = true
 	if !firstTime:
 		get_tree().get_root().get_node("Core/main/AudioStreamPlayer").pause_mode = Node.PAUSE_MODE_PROCESS
 		get_tree().get_root().get_node("Core/main/AudioStreamPlayer").volume_db = -10
@@ -71,6 +72,7 @@ func runRandom():
 					child.get_node("Sprite").texture = swordSprite
 			
 func closePop():
+	popup_exclusive = true
 	get_tree().get_root().get_node("Core/main/AudioStreamPlayer").volume_db = -10
 	firstTime = false
 	randomNums = []

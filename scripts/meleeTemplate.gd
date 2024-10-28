@@ -10,7 +10,7 @@ var canShoot = true
 var enemyQueue = []
 func _ready():
 	pass
-
+var canHit = true
 func attack(body: Node):
 	if canShoot and body:
 		$AnimationPlayer.play("swing")
@@ -33,6 +33,20 @@ func _process(delta):
 			$anchor/Sprite.scale.y = -3
 		else:
 			$anchor/Sprite.scale.y = 3
+		
+	var bodies = $anchor/Sprite/SpriteArea2D.get_overlapping_bodies()
+	for body in bodies:
+		if body.is_in_group("enemy") and canHit:
+			body.takeDamage()
+			canHit = false
+			yield(get_tree().create_timer(0.3),"timeout")
+			canHit = true
+			
+			
+				
+			
+			
+	
 func lookAt(body: Node2D):
 	if body:
 		isLookingAt = true
@@ -51,9 +65,12 @@ func _on_Area2D_body_exited(body):
 	pass
 	
 func _on_SpriteArea2D_body_entered(body):
-	if body.is_in_group("enemy"):
-		body.takeDamage()
-
+#	if body.is_in_group("enemy"):
+#		while body:
+#			print("aaaa")
+#			yield(get_tree().create_timer(0.3),"timeout")
+#			body.takeDamage()
+	pass
 
 func _on_AnimationPlayer_animation_finished(anim_name):
 	

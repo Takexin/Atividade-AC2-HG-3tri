@@ -1,9 +1,11 @@
 extends KinematicBody2D
 
 export var health = 10
+export var max_health = 10
 export var xp = 0
-export var xpNeeded = 30
+export var xpNeeded = 10
 export var level = 1
+signal playerLevel(level)
 var canDamaged = true
 const SPEED = 15000
 onready var timer = get_node("Timer")
@@ -27,7 +29,7 @@ var enemyName = "Enemy"
 
 
 func _ready():
-	$CanvasLayer/healthBar.max_value = health
+	$CanvasLayer/healthBar.max_value = max_health
 	$CanvasLayer/healthBar.value = health
 	$CanvasLayer/xpBar.max_value = xpNeeded
 	$Camera2D.zoom = Vector2(0.9,0.9)
@@ -37,11 +39,12 @@ func _ready():
 func levelUp():
 	level += 1
 	xp = 0
-	xpNeeded += xpNeeded * 1.5 # 150% increase each level
+	xpNeeded += xpNeeded * 0.75 # 75% increase each level
 	$CanvasLayer/xpBar.value = xp
 	$CanvasLayer/xpBar.max_value = xpNeeded
 	$CanvasLayer/Label.text = String(level)
 	weaponSelect.runRandom()
+	emit_signal("playerLevel", level)
 
 var canPlay = true
 func _physics_process(delta):
@@ -126,7 +129,11 @@ func _on_Area2D_body_entered(body):
 	if body.is_in_group("xp"):
 		emit_signal("foundOrb")
 		xp += body.xpAmmount
+		health += body.healthAmmount
+		$CanvasLayer/healthBar.value = health
 		$CanvasLayer/xpBar.value = xp
+		if health > max_health:
+			health = max_health
 		if xp >= xpNeeded:
 			levelUp()
 
