@@ -4,6 +4,6 @@ History/Geography project
 Using [Godot 3.6](https://godotengine.org)
 
 ## Vampire Survivors Inspired!
-Disclaimer: Project build not included, you must compile using godot engine
+Disclaimer: Project build is included with the repo - no need to install the executable
 
-Project status: Still in development
+Project status: Finished (hopefully XD)
