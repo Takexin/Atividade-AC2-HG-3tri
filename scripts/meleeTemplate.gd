@@ -39,7 +39,7 @@ func _process(delta):
 		if body.is_in_group("enemy") and canHit:
 			body.takeDamage()
 			canHit = false
-			yield(get_tree().create_timer(0.3),"timeout")
+			yield(get_tree().create_timer(0.5),"timeout")
 			canHit = true
 			
 			

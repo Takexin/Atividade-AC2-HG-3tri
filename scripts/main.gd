@@ -5,7 +5,7 @@ var infectedScene = load("res://scenes/infectedPerson.tscn")
 var ratScene = load("res://scenes/rat.tscn")
 var startScene = load("res://scenes/start.tscn")
 var time = 0.0
-var timeSpawn = 6
+var timeSpawn = 5
 var canDecrease : bool = true
 
 var difficulty = 0.0
@@ -29,7 +29,8 @@ func timerDecrease():
 	if canDecrease:
 		canDecrease = false
 		yield(get_tree().create_timer(2), "timeout")
-		timeSpawn= abs(timeSpawn - 0.1)
+		if timeSpawn >= 0.2:
+			timeSpawn= abs(timeSpawn - 0.1)
 		print(timeSpawn)
 		canDecrease = true
 func _on_EnemySpawnTimer_timeout():

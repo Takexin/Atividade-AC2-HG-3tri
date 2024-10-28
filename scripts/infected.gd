@@ -9,6 +9,8 @@ export var health = 100
 var xpScene = load("res://scenes/orbXP.tscn")
 var heartScene = load("res://scenes/health.tscn")
 var direction
+
+var died = false
 func move_towards_player(player_position, delta, player):
 	direction = (player_position - position).normalized()
 	var collision = move_and_collide(direction * speed, delta)
@@ -57,6 +59,12 @@ func takeDamage(isPoison: bool = false, damage = 30):
 			get_parent().call_deferred("add_child", xpInstance)
 			yield(get_tree().create_timer(0.01),"timeout")
 			player.get_node("Area2D").monitoring = true
+		$AudioStreamPlayer2D.pitch_scale = 0.7
+		$AudioStreamPlayer2D.volume_db = 10
+		$AudioStreamPlayer2D.play()
+		visible = false
+		$CollisionShape2D.disabled = true
+		yield($AudioStreamPlayer2D, "finished")
 		self.queue_free()
 
 

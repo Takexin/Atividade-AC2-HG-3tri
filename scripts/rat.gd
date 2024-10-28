@@ -27,7 +27,7 @@ func _process(delta):
 	elif player.position.x > position.x:
 		$Sprite.scale.x = -3
 		$CPUParticles2D.gravity.x = -50
-	
+var canDie = true
 func _on_Timer_timeout():
 	canDamage = true
 func takeDamage(isPoison: bool = false, damage = 30):
@@ -37,7 +37,8 @@ func takeDamage(isPoison: bool = false, damage = 30):
 		position -= direction * 30
 	$Sprite.modulate = Color(255, 255, 255)
 	$Damageflicker.start(0.1)
-	if health <= 0:
+	if health <= 0 and canDie:
+		canDie = false
 		var player = get_parent().get_node("character")
 		if randf() >= 0.1:
 			var xpInstance = xpScene.instance()
@@ -56,6 +57,12 @@ func takeDamage(isPoison: bool = false, damage = 30):
 			get_parent().call_deferred("add_child", xpInstance)
 			yield(get_tree().create_timer(0.01),"timeout")
 			player.get_node("Area2D").monitoring = true
+		$AudioStreamPlayer2D.pitch_scale = 0.7
+		$AudioStreamPlayer2D.volume_db = 10
+		$AudioStreamPlayer2D.play(0.4)
+		visible = false
+		$CollisionShape2D.disabled = true
+		yield($AudioStreamPlayer2D, "finished")
 		self.queue_free()
 
 func poison():
