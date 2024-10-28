@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-const speed = 1
+export var speed = 2
 signal damage
 var canDamage = true
 onready var timer = get_node("Timer")

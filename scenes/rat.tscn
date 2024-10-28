@@ -7,7 +7,7 @@
 [ext_resource path="res://assets/sfx/bonk-sound-effect-36055.mp3" type="AudioStream" id=5]
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 46.5, 24 )
+extents = Vector2( 43.5, 16.5 )
 
 [sub_resource type="Animation" id=5]
 length = 0.001
@@ -55,7 +55,8 @@ vframes = 2
 frame = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -5.5, 4 )
+position = Vector2( -7, -0.5 )
+scale = Vector2( 0.872634, 0.872634 )
 shape = SubResource( 4 )
 
 [node name="Timer" type="Timer" parent="."]

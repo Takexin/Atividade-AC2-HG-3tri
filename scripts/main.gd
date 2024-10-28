@@ -7,6 +7,7 @@ var startScene = load("res://scenes/start.tscn")
 func _ready():
 	$EnemySpawnTimer.start(1)
 	pause_mode = Node.PAUSE_MODE_INHERIT
+	randomize()
 
 
 

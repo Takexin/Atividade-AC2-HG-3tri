@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-const speed = 1
+export var speed = 1
 signal damage
 var canDamage = true
 var canPlay = true
