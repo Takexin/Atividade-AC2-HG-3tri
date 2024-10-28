@@ -8,6 +8,7 @@ extents = Vector2( 4, 16 )
 
 [node name="projectile" type="KinematicBody2D" groups=["weapon"]]
 scale = Vector2( 0.972979, 1.41799 )
+collision_layer = 0
 script = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

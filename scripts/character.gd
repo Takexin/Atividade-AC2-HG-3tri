@@ -16,7 +16,7 @@ signal foundOrb
 
 
 var enemyName = "Enemy"
-
+ 
 #Weapon instances
 # var weaponBow = load("res://scenes/weakpons/bow.tscn")
 # var weaponAxe = load("res://scenes/weakpons/Axe.tscn")
@@ -71,9 +71,7 @@ func _physics_process(delta):
 		$Sprite.frame = 1
 	# if (Input.is_action_pressed("restart")):
 	# 	get_tree().reload_current_scene()
-	if Input.is_action_just_pressed("increaseSpeed"):
-		$bow.weaponCooldown -= 0.1
-
+	
 	if velocity != Vector2.ZERO and canPlay:
 		$WalkSound.play()
 		canPlay = false

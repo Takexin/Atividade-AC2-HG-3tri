@@ -7,7 +7,7 @@
 [ext_resource path="res://assets/sfx/Glass Breaking ( Minecraft) - Sound Effect [ ezmp3.cc ].mp3" type="AudioStream" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 7.8037, 13.0577 )
+extents = Vector2( 10.983, 13.479 )
 
 [sub_resource type="CircleShape2D" id=2]
 
@@ -63,10 +63,11 @@ audio_stream = ExtResource( 5 )
 
 [node name="potion" type="KinematicBody2D" groups=["weapon"]]
 scale = Vector2( 0.972979, 1.41799 )
+collision_layer = 0
 script = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0.513905, 2.46828 )
+position = Vector2( -2.21761e-05, 2.82089 )
 rotation = 1.5708
 scale = Vector2( 1.22, 1.22 )
 shape = SubResource( 1 )

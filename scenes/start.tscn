@@ -3,7 +3,7 @@
 [ext_resource path="res://assets/bars/new_dynamicfont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://scripts/start.gd" type="Script" id=2]
 [ext_resource path="res://assets/fonts/Jacquard24Charted-Regular.ttf" type="DynamicFontData" id=3]
-[ext_resource path="res://assets/images/test.png" type="Texture" id=4]
+[ext_resource path="res://assets/images/Mídia.png" type="Texture" id=4]
 [ext_resource path="res://assets/bars/wobble.tres" type="Material" id=5]
 [ext_resource path="res://assets/music/Jeremy Blake - Powerup! ♫ NO COPYRIGHT 8-bit Music [ ezmp3.cc ].mp3" type="AudioStream" id=6]
 [ext_resource path="res://assets/images/poisonCircle.png" type="Texture" id=7]
@@ -145,7 +145,7 @@ text = "Exit"
 [node name="Sprite" type="Sprite" parent="."]
 self_modulate = Color( 1, 1, 1, 0.882353 )
 position = Vector2( 504, 323 )
-scale = Vector2( 9.70556, 5.3921 )
+scale = Vector2( 0.904817, 0.533775 )
 texture = ExtResource( 4 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
