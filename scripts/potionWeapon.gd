@@ -14,6 +14,7 @@ func _ready():
 
 func shoot(body: Node):
 	if canShoot and body:
+		$AudioStreamPlayer2D.play(0.5)
 		var projectileInstance = projectileScene.instance()
 		projectileInstance.set_name("projectile")
 		projectileInstance.direction = (body.position - player.position).normalized()

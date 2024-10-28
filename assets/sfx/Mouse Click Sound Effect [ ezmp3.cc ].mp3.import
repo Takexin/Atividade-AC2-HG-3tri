@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Mouse Click Sound Effect [ ezmp3.cc ].mp3-7ac9451b6fc4faab91db0a54718930f7.mp3str"
+
+[deps]
+
+source_file="res://assets/sfx/Mouse Click Sound Effect [ ezmp3.cc ].mp3"
+dest_files=[ "res://.import/Mouse Click Sound Effect [ ezmp3.cc ].mp3-7ac9451b6fc4faab91db0a54718930f7.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

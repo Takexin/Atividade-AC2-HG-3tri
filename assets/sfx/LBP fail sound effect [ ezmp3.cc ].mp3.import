@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/LBP fail sound effect [ ezmp3.cc ].mp3-85004d10d2808537aa228b19da884cf5.mp3str"
+
+[deps]
+
+source_file="res://assets/sfx/LBP fail sound effect [ ezmp3.cc ].mp3"
+dest_files=[ "res://.import/LBP fail sound effect [ ezmp3.cc ].mp3-85004d10d2808537aa228b19da884cf5.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -32,6 +32,7 @@ func _on_Button2_button_down():
 	canPause = true
 
 func deadScreen():
+	get_parent().get_node("AudioStreamPlayer").play()
 	get_tree().paused = true
 	$Dead.popup()
 	canPause = false

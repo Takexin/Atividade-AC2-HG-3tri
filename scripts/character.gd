@@ -31,19 +31,19 @@ func _ready():
 	$CanvasLayer/healthBar.value = health
 	$CanvasLayer/xpBar.max_value = xpNeeded
 	$Camera2D.zoom = Vector2(0.9,0.9)
+	randomize()
 	
-func _process(_delta):
-	$CanvasLayer/Label2.text = String(Engine.get_frames_per_second())
+
 func levelUp():
 	level += 1
 	xp = 0
-	xpNeeded += xpNeeded * 0.5 # 50% increase each level
+	xpNeeded += xpNeeded * 1.5 # 150% increase each level
 	$CanvasLayer/xpBar.value = xp
 	$CanvasLayer/xpBar.max_value = xpNeeded
 	$CanvasLayer/Label.text = String(level)
 	weaponSelect.runRandom()
 
-
+var canPlay = true
 func _physics_process(delta):
 	var velocity = Vector2()
 	if (Input.is_action_pressed("keyUp")):
@@ -66,16 +66,28 @@ func _physics_process(delta):
 	elif (velocity == Vector2(0, 0)):
 		$AnimationPlayer.stop()
 		$Sprite.frame = 1
-	if (Input.is_action_pressed("restart")):
-		get_tree().reload_current_scene()
+	# if (Input.is_action_pressed("restart")):
+	# 	get_tree().reload_current_scene()
 	if Input.is_action_just_pressed("increaseSpeed"):
 		$bow.weaponCooldown -= 0.1
 
+	if velocity != Vector2.ZERO and canPlay:
+		$WalkSound.play()
+		canPlay = false
+		$walkTimer.start(0.5)
+	elif velocity == Vector2(0,0):
+		$WalkSound.playing = false
+		
 var blincControl = 0
 var numLoops = 2
 
 func _on_Enemy_damage():
 	if canDamaged:
+		var sound = int(rand_range(1,3))
+		match sound:
+			1:$damage.play()
+			2:$damage2.play()
+			3:$damage3.play()
 		health -= 1
 		canDamaged = false
 		$damageTimer.start()
@@ -115,8 +127,11 @@ func _on_Area2D_body_entered(body):
 		emit_signal("foundOrb")
 		xp += body.xpAmmount
 		$CanvasLayer/xpBar.value = xp
-		print(xp)
 		if xp >= xpNeeded:
 			levelUp()
 
 
+
+func _on_walkTimer_timeout():
+	canPlay = true
+		

@@ -30,6 +30,7 @@ func _process(delta):
 func _on_Timer_timeout():
 	canDamage = true
 func takeDamage(isPoison: bool = false, damage = 30):
+	$AudioStreamPlayer2D.play(0.4)
 	health -= damage
 	if !isPoison:
 		position -= direction * 30

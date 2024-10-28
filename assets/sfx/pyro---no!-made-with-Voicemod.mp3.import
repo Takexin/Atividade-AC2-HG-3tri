@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/pyro---no!-made-with-Voicemod.mp3-345c5a74be197870a3ce04ad0d6fdc69.mp3str"
+
+[deps]
+
+source_file="res://assets/sfx/pyro---no!-made-with-Voicemod.mp3"
+dest_files=[ "res://.import/pyro---no!-made-with-Voicemod.mp3-345c5a74be197870a3ce04ad0d6fdc69.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

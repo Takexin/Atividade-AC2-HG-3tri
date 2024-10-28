@@ -18,7 +18,7 @@ var bowSprite = preload("res://assets/images/bow.png")
 
 #player node
 onready var player = get_tree().get_root().get_node("Core/main/character")
-
+var firstTime = true
 func _process(_delta): # for testing, remove later
 	rect_size = get_viewport_rect().size
 	#rect_position = get_viewport_rect().size/2
@@ -28,7 +28,11 @@ func _ready():
 var randomNums = []
 var numChecker = []
 func runRandom():
+	if !firstTime:
+		get_tree().get_root().get_node("Core/main/AudioStreamPlayer").pause_mode = Node.PAUSE_MODE_PROCESS
+		get_tree().get_root().get_node("Core/main/AudioStreamPlayer").volume_db = -10
 	self.popup()
+	$AudioStreamPlayer.play()
 	get_tree().paused = true
 	get_parent().get_node(".").canPause = false #parent node (control2 on main)
 	var i =0
@@ -67,6 +71,8 @@ func runRandom():
 					child.get_node("Sprite").texture = swordSprite
 			
 func closePop():
+	get_tree().get_root().get_node("Core/main/AudioStreamPlayer").volume_db = -10
+	firstTime = false
 	randomNums = []
 	numChecker = []
 	get_parent().canPause = true
@@ -77,16 +83,22 @@ func closePop():
 	#player.addWeapon("res://scenes/weakpons/Axe.tscn")
 func _on_Button2_button_up():
 	player.addWeapon(weapons[randomNums[0]-1])
+	$AudioStreamPlayer2.play(0.5)
+	yield($AudioStreamPlayer2, "finished")
 	closePop()
 	
 
 
 func _on_Button3_button_up():
+	$AudioStreamPlayer2.play(0.5)
+	yield($AudioStreamPlayer2, "finished")
 	player.addWeapon(weapons[randomNums[1]-1])
 	closePop()
 
 
 func _on_Button4_button_up():
+	$AudioStreamPlayer2.play(0.5)
+	yield($AudioStreamPlayer2, "finished")
 	player.addWeapon(weapons[randomNums[2]-1])
 	closePop()
 

@@ -14,8 +14,14 @@ func _process(_delta):
 
 
 func _on_Button_button_up():
+	$AudioStreamPlayer2.play(0.5)
+	$AudioStreamPlayer2D.playing = false
+	yield($AudioStreamPlayer2, "finished")
 	get_tree().change_scene_to(mainScene)
 
 
 func _on_Button3_button_up():
+	$AudioStreamPlayer2.play(0.5)
+	$AudioStreamPlayer2D.playing = false
+	yield($AudioStreamPlayer2, "finished")
 	get_tree().quit()

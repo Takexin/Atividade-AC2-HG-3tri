@@ -15,6 +15,7 @@ func _physics_process(delta):
 	if collision:
 		if (collision.collider.is_in_group("enemy")):
 			print("found enemy")
+			$AudioStreamPlayer2D2.play(0.1)
 			$Area2D.monitoring = true
 			$Node2D/CPUParticles2D.emitting = true
 			$Node2D/CPUParticles2D.global_rotation_degrees = 0

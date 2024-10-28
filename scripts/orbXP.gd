@@ -9,13 +9,19 @@ func _ready():
 func _physics_process(delta):
 	if player and !player.is_connected("foundOrb", self, "onOrbFound"):
 		player.connect("foundOrb", self, "onOrbFound")
-		print("connected")
 	if move:
 		var direction = (player.position - position).normalized()
 		var collision = move_and_collide(direction * 10, delta)
 		if collision:
-			player.xp += xpAmmount
-			self.queue_free()
+			if !$AudioStreamPlayer2D.is_playing():
+				$AudioStreamPlayer2D.play()
+				hide()
+				$CollisionShape2D.queue_free()
+			if $AudioStreamPlayer2D.get_playback_position() >= 0.3:
+				player.xp += xpAmmount
+				queue_free()
 
 func onOrbFound():
 	move = true
+
+

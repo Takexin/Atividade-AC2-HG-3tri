@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/mixkit-punch-through-air-2141.mp3-429ef4dffd9900303a7bf329e6d3702e.mp3str"
+
+[deps]
+
+source_file="res://assets/sfx/mixkit-punch-through-air-2141.mp3"
+dest_files=[ "res://.import/mixkit-punch-through-air-2141.mp3-429ef4dffd9900303a7bf329e6d3702e.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

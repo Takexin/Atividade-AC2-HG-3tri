@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scenes/character.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/pause.gd" type="Script" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://icon.png" type="Texture" id=7]
 [ext_resource path="res://scripts/core.gd" type="Script" id=8]
 [ext_resource path="res://scenes/weaponSelection.tscn" type="PackedScene" id=9]
+[ext_resource path="res://assets/sfx/LBP fail sound effect [ ezmp3.cc ].mp3" type="AudioStream" id=10]
+[ext_resource path="res://assets/sfx/Final Destination (Super Smash Bros. Melee) [ ezmp3.cc ].mp3" type="AudioStream" id=11]
 
 [sub_resource type="ConvexPolygonShape2D" id=2]
 points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
@@ -653,6 +655,10 @@ show_behind_parent = true
 scale = Vector2( 100, 100 )
 texture = ExtResource( 7 )
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CanvasLayer"]
+pause_mode = 2
+stream = ExtResource( 10 )
+
 [node name="main" type="Node2D" parent="."]
 script = ExtResource( 4 )
 
@@ -691,6 +697,11 @@ position = Vector2( -6077, 911 )
 scale = Vector2( 2100, 2100 )
 texture = ExtResource( 5 )
 color = Color( 1, 0, 0, 1 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="main"]
+stream = ExtResource( 11 )
+volume_db = -5.0
+autoplay = true
 
 [connection signal="button_up" from="CanvasLayer/Control2/Popup/Button" to="CanvasLayer/Control2" method="_on_Button_button_up"]
 [connection signal="button_down" from="CanvasLayer/Control2/Popup/Button2" to="CanvasLayer/Control2" method="_on_Button2_button_down"]

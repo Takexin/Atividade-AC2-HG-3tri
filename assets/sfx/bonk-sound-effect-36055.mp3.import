@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/bonk-sound-effect-36055.mp3-e37074caf2ad023aa4e81c871b21913e.mp3str"
+
+[deps]
+
+source_file="res://assets/sfx/bonk-sound-effect-36055.mp3"
+dest_files=[ "res://.import/bonk-sound-effect-36055.mp3-e37074caf2ad023aa4e81c871b21913e.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -3,6 +3,7 @@ extends KinematicBody2D
 const speed = 1
 signal damage
 var canDamage = true
+var canPlay = true
 onready var timer = get_node("Timer")
 export var health = 100
 var xpScene = load("res://scenes/orbXP.tscn")
@@ -29,6 +30,7 @@ func _on_Timer_timeout():
 	canDamage = true
 func takeDamage(isPoison: bool = false, damage = 30):
 	health -= damage
+	$AudioStreamPlayer2D.play()
 	if !isPoison:
 		position -= direction * 30
 	$Sprite.modulate = Color(255, 255, 255)
@@ -54,8 +56,21 @@ func poison():
 		i += 1
 func _on_poisonTimer_timeout():
 	var function = poison()
-	takeDamage(true, 10)
 	function.resume()
+	takeDamage(true, 10)
+
+
+func _on_hit_finished():
+	$hit.playing = false	
+
+
+
+
+func _on_AudioStreamPlayer2D_finished():
+	# $AudioStreamPlayer2D.playing = false
+	pass
+
+
 
 func _on_Damageflicker_timeout():
 	$Sprite.modulate = Color(1, 1, 1)

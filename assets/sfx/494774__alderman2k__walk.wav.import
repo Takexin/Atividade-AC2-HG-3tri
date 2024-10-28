@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/494774__alderman2k__walk.wav-1c46b729cd0a825d306580a41f2e83f7.sample"
+
+[deps]
+
+source_file="res://assets/sfx/494774__alderman2k__walk.wav"
+dest_files=[ "res://.import/494774__alderman2k__walk.wav-1c46b729cd0a825d306580a41f2e83f7.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

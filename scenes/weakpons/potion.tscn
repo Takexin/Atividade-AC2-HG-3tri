@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scripts/potion.gd" type="Script" id=1]
 [ext_resource path="res://assets/images/poção.png" type="Texture" id=2]
 [ext_resource path="res://assets/images/xp.png" type="Texture" id=3]
 [ext_resource path="res://assets/images/poisonCircle.png" type="Texture" id=4]
+[ext_resource path="res://assets/sfx/Glass Breaking ( Minecraft) - Sound Effect [ ezmp3.cc ].mp3" type="AudioStream" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 7.8037, 13.0577 )
@@ -56,6 +57,9 @@ tracks/1/keys = {
 interpolation_mode = 2
 offsets = PoolRealArray( 0, 0.0558659, 0.424581 )
 colors = PoolColorArray( 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1 )
+
+[sub_resource type="AudioStreamRandomPitch" id=6]
+audio_stream = ExtResource( 5 )
 
 [node name="potion" type="KinematicBody2D" groups=["weapon"]]
 scale = Vector2( 0.972979, 1.41799 )
@@ -118,6 +122,9 @@ show_behind_parent = true
 rotation = 6.28319
 scale = Vector2( 1e-05, 1e-05 )
 texture = ExtResource( 4 )
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource( 6 )
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

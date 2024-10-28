@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Witch Throw (Nr. 1 _ Minecraft Sound) - Sound Effect for editing [ ezmp3.cc ].mp3-254c0741780bf48cc10394bfd0533e1e.mp3str"
+
+[deps]
+
+source_file="res://assets/sfx/Witch Throw (Nr. 1 _ Minecraft Sound) - Sound Effect for editing [ ezmp3.cc ].mp3"
+dest_files=[ "res://.import/Witch Throw (Nr. 1 _ Minecraft Sound) - Sound Effect for editing [ ezmp3.cc ].mp3-254c0741780bf48cc10394bfd0533e1e.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/pyro---medic!-made-with-Voicemod.mp3-c54af57520e531f8d9d1818823a14166.mp3str"
+
+[deps]
+
+source_file="res://assets/sfx/pyro---medic!-made-with-Voicemod.mp3"
+dest_files=[ "res://.import/pyro---medic!-made-with-Voicemod.mp3-c54af57520e531f8d9d1818823a14166.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
