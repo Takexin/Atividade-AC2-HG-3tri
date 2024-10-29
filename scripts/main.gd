@@ -7,7 +7,7 @@ var startScene = load("res://scenes/start.tscn")
 var time = 0.0
 var timeSpawn = 5
 var canDecrease : bool = true
-
+export var enemyCounter = 0
 var difficulty = 0.0
 func _ready():
 	var player = $character
@@ -18,7 +18,7 @@ func _ready():
 
 func onPlayerLevel(level):
 	print("player leveld up")
-	difficulty += 0.5
+	difficulty += 0.2
 func _process(delta):
 	$EnemySpawnTimer.wait_time = timeSpawn
 	time += delta
@@ -34,19 +34,22 @@ func timerDecrease():
 		print(timeSpawn)
 		canDecrease = true
 func _on_EnemySpawnTimer_timeout():
-	var enemyInstance
-	var enemyType = randf()
-	if enemyType >= 0.5:
-		enemyInstance = infectedScene.instance()
-	else:
-		enemyInstance = ratScene.instance()
-	enemyInstance.health = enemyInstance.health + enemyInstance.health*difficulty
-	print(enemyInstance.health)
-	add_child(enemyInstance)
-	var spawnLocation = round(randf()*3)
-	if spawnLocation == 0:
-		spawnLocation =1
-	enemyInstance.position = get_node("character/EnemySpawn%s" %spawnLocation).global_position
-	
+	print(enemyCounter)
+	if enemyCounter < 24:
+		enemyCounter += 1
+		var enemyInstance
+		var enemyType = randf()
+		if enemyType >= 0.5:
+			enemyInstance = infectedScene.instance()
+		else:
+			enemyInstance = ratScene.instance()
+		enemyInstance.health = enemyInstance.health + enemyInstance.health*difficulty
+		print(enemyInstance.health)
+		add_child(enemyInstance)
+		var spawnLocation = round(randf()*3)
+		if spawnLocation == 0:
+			spawnLocation =1
+		enemyInstance.position = get_node("character/EnemySpawn%s" %spawnLocation).global_position
+		
 
 
