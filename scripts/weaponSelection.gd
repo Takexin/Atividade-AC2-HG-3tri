@@ -34,7 +34,7 @@ func runRandom():
 		get_tree().get_root().get_node("Core/main/AudioStreamPlayer").volume_db = -10
 	self.popup()
 	$AudioStreamPlayer.play()
-	get_tree().paused = true
+	#get_tree().paused = true
 	get_parent().get_node(".").canPause = false #parent node (control2 on main)
 	var i =0
 	while i < 3:

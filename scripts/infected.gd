@@ -29,60 +29,64 @@ func _process(delta):
 	elif player.position.x > position.x:
 		$Sprite.scale.x = 3
 	
-var canDie = true
+export var canDie = true
 func _on_Timer_timeout():
 	canDamage = true
 func takeDamage(isPoison: bool = false, damage = 30):
-	health -= damage
-	$AudioStreamPlayer2D.play()
-	if !isPoison:
-		position -= direction * 30
-	$Sprite.modulate = Color(255, 255, 255)
-	$Damageflicker.start(0.1)
-	if health <= 0 and canDie:
-		canDie = false
-		var player = get_parent().get_node("character")
-		if randf() >= 0.1:
-			var xpInstance = xpScene.instance()
-			xpInstance.position = self.position
-			xpInstance.xpAmmount = 3
-			xpInstance.set_name("orbXP")
-			player.get_node("Area2D").monitoring = false
-			get_parent().call_deferred("add_child", xpInstance)
-			yield(get_tree().create_timer(0.01),"timeout")
-			player.get_node("Area2D").monitoring = true
-		else:
-			var xpInstance = heartScene.instance()
-			xpInstance.position = self.position
-			xpInstance.set_name("orbXP")
-			player.get_node("Area2D").monitoring = false
-			get_parent().call_deferred("add_child", xpInstance)
-			yield(get_tree().create_timer(0.01),"timeout")
-			player.get_node("Area2D").monitoring = true
-		$AudioStreamPlayer2D.pitch_scale = 0.7
-		$AudioStreamPlayer2D.volume_db = 10
-		$AudioStreamPlayer2D.play()
-		visible = false
-		$CollisionShape2D.disabled = true
-		yield($AudioStreamPlayer2D, "finished")
-		self.queue_free()
+	if canDie:
+		$AudioStreamPlayer2D.play(0.4)
+		health -= damage
+		if !isPoison:
+			position -= direction * 30
+		$Sprite.modulate = Color(255, 255, 255)
+		$Damageflicker.start(0.1)
+		if health <= 0:
+			canDie = false
+			var player = get_parent().get_node("character")
+			if randf() >= 0.1:
+				var xpInstance = xpScene.instance()
+				xpInstance.position = self.position
+				xpInstance.xpAmmount = 3
+				xpInstance.set_name("orbXP")
+				player.get_node("Area2D").monitoring = false
+				get_parent().call_deferred("add_child", xpInstance)
+				yield(get_tree().create_timer(0.01),"timeout")
+				player.get_node("Area2D").monitoring = true
+			else:
+				var xpInstance = heartScene.instance()
+				xpInstance.position = self.position
+				xpInstance.set_name("orbXP")
+				player.get_node("Area2D").monitoring = false
+				get_parent().call_deferred("add_child", xpInstance)
+				yield(get_tree().create_timer(0.01),"timeout")
+				player.get_node("Area2D").monitoring = true
+			
+			get_tree().get_root().get_node("Core/main").enemyCounter -= 1
+			$AudioStreamPlayer2D.pitch_scale = 0.7
+			$AudioStreamPlayer2D.volume_db = 10
+			$AudioStreamPlayer2D.play(0.4)
+			visible = false
+			$CollisionShape2D.disabled = true
+			yield(get_tree().create_timer(0.6), "timeout")
+			self.queue_free()
 
-
+var i = 0
 func poison():
-	speed -= 0.2
-	var i = 0
+	var speedValue = speed
 	while i < 4:
-		$poisonTimer.start(1)
-		yield ()
-		i += 1
+		if canDie:
+			speed = 0.2
+			$poisonTimer.start(1)
+			yield($poisonTimer, "timeout")
+			i += 1
+	i = 0
+	speed = speedValue
 func _on_poisonTimer_timeout():
-	var function = poison()
-	function.resume()
-	takeDamage(true, 10)
+	call_deferred("takeDamage",true,10)
 
 
 func _on_hit_finished():
-	$hit.playing = false	
+	$hit.playing = false
 
 
 

@@ -37,11 +37,12 @@ func _process(delta):
 	var bodies = $anchor/Sprite/SpriteArea2D.get_overlapping_bodies()
 	for body in bodies:
 		if body.is_in_group("enemy") and canHit:
-			body.takeDamage()
-			canHit = false
-			yield(get_tree().create_timer(0.5),"timeout")
-			canHit = true
-			
+			if body.canDie:
+				body.call_deferred("takeDamage")
+				canHit = false
+				yield(get_tree().create_timer(0.5),"timeout")
+				canHit = true
+				
 			
 				
 			
@@ -60,7 +61,7 @@ func _on_Area2D_body_entered(body):
 	if body.is_in_group("enemy"):
 		lookAt(body)
 	elif body.is_in_group("xp"):
-		body.queue_free()
+		body.call_deferred("queue_free")
 func _on_Area2D_body_exited(body):
 	pass
 	
