@@ -40,6 +40,7 @@ func takeDamage(isPoison: bool = false, damage = 30):
 	$Sprite.modulate = Color(255, 255, 255)
 	$Damageflicker.start(0.1)
 	if health <= 0 and canDie:
+		get_tree().get_root().get_node("Core/main").enemyCounter -= 1
 		canDie = false
 		var player = get_parent().get_node("character")
 		if randf() >= 0.1:
@@ -65,11 +66,11 @@ func takeDamage(isPoison: bool = false, damage = 30):
 		visible = false
 		$CollisionShape2D.disabled = true
 		yield($AudioStreamPlayer2D, "finished")
-		self.queue_free()
+		queue_free()
 
 
 func poison():
-	speed -= 0.2
+	speed = 0.2
 	var i = 0
 	while i < 4:
 		$poisonTimer.start(1)
