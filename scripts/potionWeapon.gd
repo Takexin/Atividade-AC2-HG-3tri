@@ -26,7 +26,7 @@ func shoot(body: Node):
 		pass
 func _on_shootCooldown_timeout():
 	canShoot = true
-	shoot(lookAtNode)
+	lookAt(lookAtNode)
 
 func _process(_delta):
 	$anchor.look_at(lookAtPos)

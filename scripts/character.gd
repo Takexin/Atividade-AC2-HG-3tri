@@ -128,7 +128,8 @@ func addWeapon(weaponScene, type):
 		weapon.global_position = global_position
 	else:
 		weaponsNum[foundIndex] += 1
-		weapons[foundIndex].weaponCooldown -= 1
+		if weapons[foundIndex].weaponCooldown != 0.2:
+			weapons[foundIndex].weaponCooldown -= 0.2
 		if weapons[foundIndex].get_node("AnimationPlayer"):
 			weapons[foundIndex].get_node("AnimationPlayer").playback_speed += 0.2
 		print("weapon cooldown %s" % weapons[foundIndex].weaponCooldown)

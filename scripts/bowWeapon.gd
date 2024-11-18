@@ -2,7 +2,7 @@ extends Node2D
 onready var player = get_tree().get_root().get_node("Core/main/character")
 var projectileScene = preload("res://scenes/weakpons/projectile.tscn")
 
-export var weaponCooldown: float = 0
+export var weaponCooldown: float = 1
 var isLookingAt = false
 var lookAtPos = Vector2(0, 0)
 var lookAtNode = Node2D
@@ -19,16 +19,19 @@ func shoot(body: Node):
 		projectileInstance.set_name("projectile")
 		projectileInstance.direction = (body.position - player.position).normalized()
 		#get_tree().get_root().get_node("Core/main/projectileContainer").add_child(projectileInstance, true)
+		look_at((body.position - player.position).normalized())
+		yield(get_tree().create_timer(0.01), "timeout")
 		get_tree().get_root().get_node("Core/main/projectileContainer").call_deferred("add_child", projectileInstance, true)
 		canShoot = false
 		$shootCooldown.start(weaponCooldown)
+
 	elif(!body):
 		lookAt(enemyQueue.front())
 	else:
 		isLookingAt = false
 func _on_shootCooldown_timeout():
 	canShoot = true
-	shoot(lookAtNode)
+	lookAt(lookAtNode)
 
 func _process(_delta):
 
@@ -45,6 +48,8 @@ func lookAt(body: Node2D):
 		shoot(body)
 	else:
 		isLookingAt = false
+		if enemyQueue.front():
+			lookAt(enemyQueue.front())
 		
 func _on_Area2D_body_entered(body):
 	if body.is_in_group("enemy"):
