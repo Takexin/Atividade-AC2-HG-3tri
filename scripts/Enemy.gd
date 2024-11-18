@@ -1,3 +1,5 @@
+# ENEMY TEMPLATE - NOT IN USE AT THE MOMENT
+
 extends KinematicBody2D
 
 const speed = 1

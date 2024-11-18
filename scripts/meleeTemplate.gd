@@ -2,7 +2,7 @@ extends Node2D
 onready var player = get_tree().get_root().get_node("Core/main/character")
 var projectileScene = load("res://scenes/weakpons/projectile.tscn")
 
-export var weaponCooldown:float = 0
+export var weaponCooldown:float = 2
 var isLookingAt = false
 var lookAtPos = Vector2(0,0)
 var lookAtNode = Node2D
@@ -22,7 +22,6 @@ func attack(body: Node):
 	else:
 		isLookingAt = false
 func _on_shootCooldown_timeout():
-	
 	canShoot=true
 	attack(lookAtNode)
 
@@ -40,7 +39,7 @@ func _process(delta):
 			if body.is_in_group("enemy") and canHit:
 				body.call_deferred("takeDamage")
 				canHit = false
-				yield(get_tree().create_timer(0.5),"timeout")
+				yield(get_tree().create_timer(1 - $AnimationPlayer.playback_speed),"timeout")
 				canHit = true
 				
 				

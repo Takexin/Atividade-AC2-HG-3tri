@@ -18,9 +18,12 @@ func shoot(body: Node):
 		var projectileInstance = projectileScene.instance()
 		projectileInstance.set_name("projectile")
 		projectileInstance.direction = (body.position - player.position).normalized()
-		get_tree().get_root().get_node("Core/main/projectileContainer").add_child(projectileInstance, true)
+		#get_tree().get_root().get_node("Core/main/projectileContainer").add_child(projectileInstance, true)
+		get_tree().get_root().get_node("Core/main/projectileContainer").call_deferred("add_child", projectileInstance, true)
 		canShoot = false
 		$shootCooldown.start(weaponCooldown)
+	elif(!body):
+		lookAt(enemyQueue.front())
 	else:
 		isLookingAt = false
 func _on_shootCooldown_timeout():

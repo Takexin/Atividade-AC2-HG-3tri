@@ -70,12 +70,16 @@ func takeDamage(isPoison: bool = false, damage = 30):
 
 
 func poison():
+	var currentSpeed = speed
 	speed = 0.2
 	var i = 0
 	while i < 4:
-		$poisonTimer.start(1)
-		yield ()
+		#$poisonTimer.start(1)
+		takeDamage(true, 10)
+		yield(get_tree().create_timer(1), "timeout")
+		#yield ()
 		i += 1
+	speed = currentSpeed
 func _on_poisonTimer_timeout():
 	var function = poison()
 	function.resume()

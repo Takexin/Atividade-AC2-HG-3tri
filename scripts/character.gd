@@ -113,16 +113,25 @@ func moveOrb(body):
 	body.position -= direction
 
 var weapons = []
-func addWeapon(weaponScene):
+var weaponsType = []
+var weaponsNum = []
+func addWeapon(weaponScene, type):
 	var weapon = weaponScene.instance()
-	if weapons.find(weapon) == -1: 
+	var foundIndex = weaponsType.find(type)
+	if foundIndex == -1: 
 		weapons.push_back(weapon)
+		weaponsType.push_back(type)
+		weaponsNum.push_back(1)
 		print(weapon)
 		weapon.global_position = global_position
 		add_child(weapon)
 		weapon.global_position = global_position
 	else:
-		print("already exists")
+		weaponsNum[foundIndex] += 1
+		weapons[foundIndex].weaponCooldown -= 1
+		if weapons[foundIndex].get_node("AnimationPlayer"):
+			weapons[foundIndex].get_node("AnimationPlayer").playback_speed += 0.2
+		print("weapon cooldown %s" % weapons[foundIndex].weaponCooldown)
 func _on_Area2D_body_entered(body):
 	if body.is_in_group("xp"):
 		emit_signal("foundOrb")

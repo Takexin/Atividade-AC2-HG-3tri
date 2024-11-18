@@ -7,6 +7,7 @@ var mace = preload("res://scenes/weakpons/mace.tscn")
 var potion = preload("res://scenes/weakpons/potionWeapon.tscn")
 var sword = preload("res://scenes/weakpons/sword.tscn")
 var weapons = [axe, bow, femur, mace, potion, sword]
+var weaponsName = ["axe", "bow", "femur", "mace", "potion", "sword"]
 
 #sprites
 var axeSprite = preload("res://assets/images/weaponDisplay/machado atack 1.png")
@@ -84,7 +85,7 @@ func closePop():
 	#player.addWeapon(weapons[randomNums[0]-1])
 	#player.addWeapon("res://scenes/weakpons/Axe.tscn")
 func _on_Button2_button_up():
-	player.addWeapon(weapons[randomNums[0]-1])
+	player.addWeapon(weapons[randomNums[0]-1], weaponsName[randomNums[0]-1])
 	$AudioStreamPlayer2.play(0.5)
 	yield($AudioStreamPlayer2, "finished")
 	closePop()
@@ -94,13 +95,13 @@ func _on_Button2_button_up():
 func _on_Button3_button_up():
 	$AudioStreamPlayer2.play(0.5)
 	yield($AudioStreamPlayer2, "finished")
-	player.addWeapon(weapons[randomNums[1]-1])
+	player.addWeapon(weapons[randomNums[1]-1], weaponsName[randomNums[1]-1])
 	closePop()
 
 
 func _on_Button4_button_up():
 	$AudioStreamPlayer2.play(0.5)
 	yield($AudioStreamPlayer2, "finished")
-	player.addWeapon(weapons[randomNums[2]-1])
+	player.addWeapon(weapons[randomNums[2]-1], weaponsName[randomNums[2]-1])
 	closePop()
 
